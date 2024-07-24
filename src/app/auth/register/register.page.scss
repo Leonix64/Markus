@@ -1,0 +1,51 @@
+.register-content {
+    //--background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --background: url('https://w.wallhaven.cc/full/kx/wallhaven-kxlomm.jpg') center/cover no-repeat fixed;
+    background: var(--background);
+  
+    .register-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 20px;
+  
+      h1 {
+        color: #ffffff;
+        font-size: 32px;
+        margin-bottom: 30px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+  
+      form {
+        width: 100%;
+        max-width: 350px;
+  
+        ion-item {
+          --background: rgba(255, 255, 255, 0.1);
+          --border-radius: 8px;
+          margin-bottom: 16px;
+  
+          ion-label {
+            color: #ffffff;
+          }
+  
+          ion-input {
+            --color: #ffffff;
+          }
+        }
+  
+        ion-button {
+          margin-top: 20px;
+          --background: #ffffff;
+          --color: #764ba2;
+          font-weight: bold;
+          height: 50px;
+          font-size: 18px;
+          --border-radius: 8px;
+          --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }

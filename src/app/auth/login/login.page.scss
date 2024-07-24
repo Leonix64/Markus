@@ -1,5 +1,7 @@
 .login-content {
-    --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    //--background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --background: url('https://w.wallhaven.cc/full/kx/wallhaven-kxlomm.jpg') center/cover no-repeat fixed;
+    background: var(--background);
   
     .login-container {
       display: flex;

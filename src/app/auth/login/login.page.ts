@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoginData } from 'src/app/interfaces/login.interface';
+import { LoginData } from 'src/app/interfaces/auth.interface';
 import { ToastService } from 'src/app/services/toast.service';
 import { Router } from '@angular/router';
 
@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
 
       this.authService.LoginUser(loginData).subscribe(
         (response) => {
-          console.log('Login successful', response);
+          console.log('Inicio de sesión exitoso', response);
           this.toastService.presentToast('Inicio de sesión exitoso');
           this.router.navigate(['/home']);
         },
