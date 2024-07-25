@@ -38,7 +38,7 @@ export class AuthService {
     this.LoginUser(loginData).subscribe(
       (res: any) => {
         this.tokenService.setToken(res.token);
-        localStorage.setItem('role', res.role);
+        this.tokenService.setRole(res.role);
 
         // Role-based redirection
         if (res.role === 'admin') {

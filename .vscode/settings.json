@@ -4,8 +4,8 @@
     "@ionic/angular/standalone"
   ],
   "workbench.colorCustomizations": {
-    "activityBar.background": "#541537",
-    "titleBar.activeBackground": "#761D4D",
-    "titleBar.activeForeground": "#FEFCFD"
+    "activityBar.background": "#40E0D0",
+    "titleBar.activeBackground": "#20B2AA",
+    "titleBar.activeForeground": "#FFFFFF"
   }
 }

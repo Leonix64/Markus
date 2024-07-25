@@ -1,9 +1,12 @@
 import { CanActivateFn, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { inject } from '@angular/core';
+import { TokenService } from '../services/token.service';
 
 export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router = inject(Router);
-  const role = localStorage.getItem('role');
+  const tokenService = inject(TokenService);
+
+  const role = tokenService.getRole();
 
   const expectedRoles = route.data['expectedRoles'];
 
@@ -13,18 +16,4 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
     router.navigate(['/404']);
     return false;
   }
-
-  /*if (role === 'admin') {
-    router.navigate(['/admin/home']);
-    return false;
-  } else if (role === 'user') {
-    router.navigate(['/user/home']);
-    return false;
-  } else if (role === 'authority') {
-    router.navigate(['/authority/home']);
-    return false;
-  } else {
-    router.navigate(['/404']);
-    return false;
-  }*/
 };

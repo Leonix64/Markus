@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   private tokenKey = 'authToken';
-  private roleKey = 'userToken';
+  private roleKey = 'userRole';
 
   constructor() { }
 

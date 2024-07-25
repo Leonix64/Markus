@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+
 import { authGuard } from '../guards/auth.guard';
 import { roleGuard } from '../guards/role.guard';
-
-// Tools Modules
-import { UserToolsModule } from './User/user-tools.module';
-import { AdminToolsModule } from './Admin/admin-tools.module';
-import { AuthorityToolsModule } from './Authority/authority-tools.module';
 
 // User
 
@@ -34,10 +30,17 @@ const routes: Routes = [
     canActivate: [authGuard, roleGuard],
     data: { expectedRoles: ['authority'] }
   }
+
+  // User
+
+  // Admin
+
+  // Authority
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)

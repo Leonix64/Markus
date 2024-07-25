@@ -8,8 +8,5 @@ import { MenuController } from '@ionic/angular';
 })
 export class AppComponent {
   constructor(private menu: MenuController) {}
-
-  closeMenu() {
-    this.menu.close('start');
-  }
+  
 }
