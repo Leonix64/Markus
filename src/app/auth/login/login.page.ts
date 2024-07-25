@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoginData } from 'src/app/interfaces/auth.interface';
 import { ToastService } from 'src/app/services/toast.service';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
     private fb: FormBuilder,
     private toastService: ToastService,
     private router: Router,
+    private tokenService: TokenService,
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -35,9 +37,12 @@ export class LoginPage implements OnInit {
 
       this.authService.LoginUser(loginData).subscribe(
         (response) => {
+          // Save token in localStorage
+          this.tokenService.setToken(response.token);
+          this.authService.handleLogin(loginData);
+
           console.log('Inicio de sesión exitoso', response);
           this.toastService.presentToast('Inicio de sesión exitoso');
-          this.router.navigate(['/home']);
         },
         (error) => {
           console.error('Login failed', error);

@@ -1,0 +1,22 @@
+<ion-content class="error-page" [fullscreen]="true">
+  <div class="content-container">
+    <div class="glitch-container">
+      <h1 class="glitch" data-text="404">404</h1>
+    </div>
+    <h2 class="subtitle">PÁGINA NO ENCONTRADA</h2>
+    <div class="description">
+      <p>La página que buscas se ha perdido en el ciberespacio.</p>
+    </div>
+    <ion-button class="home-button" expand="block" routerLink="/login">
+      VOLVER AL INICIO
+    </ion-button>
+  </div>
+  <div class="background-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <div class="floating-elements">
+    <div class="element" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+  </div>
+</ion-content>
