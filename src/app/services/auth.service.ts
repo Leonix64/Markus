@@ -37,19 +37,28 @@ export class AuthService {
   handleLogin(loginData: LoginData) {
     this.LoginUser(loginData).subscribe(
       (res: any) => {
-        this.tokenService.setToken(res.token);
-        this.tokenService.setRole(res.role);
+        if (res.token && res.role) {
+          this.tokenService.setToken(res.token);
+          this.tokenService.setRole(res.role);
 
-        // Role-based redirection
-        if (res.role === 'admin') {
-          this.router.navigate(['/admin/home']);
-        } else if (res.role === 'authority') {
-          this.router.navigate(['/authority/home']);
-        } else if (res.role === 'user') {
-          this.router.navigate(['/user/home']);
+          // Role-based redirection
+          switch (res.role) {
+            case 'admin':
+              this.router.navigate(['/admin/home']);
+              break;
+            case 'authority':
+              this.router.navigate(['/authority/home']);
+              break;
+            case 'user':
+              this.router.navigate(['/user/home']);
+              break;
+            default:
+              console.error('Rol no válido');
+              this.router.navigate(['/']);
+              break;
+          }
         } else {
-          console.error('Rol no válido');
-          this.router.navigate(['/']);
+          console.error('Respuesta de login inválida', res);
         }
       },
       (error) => {

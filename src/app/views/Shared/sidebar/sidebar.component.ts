@@ -11,7 +11,7 @@ import { TabsService } from 'src/app/services/tabs.service';
 })
 export class SidebarComponent implements OnInit {
 
-  tabs: any[] = [];  // Cambia el tipo a 'any[]' para adaptarse a la estructura de las pestañas
+  tabs: any[] = [];
 
   constructor(
     private tokenService: TokenService,

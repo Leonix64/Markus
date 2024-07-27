@@ -1,0 +1,33 @@
+<ion-content class="ion-padding">
+  <div class="profile-container" *ngIf="profile">
+    <div class="profile-header">
+      <ion-avatar>
+        <img [src]="profile.profileImage || '../../../../../assets/defaultImage.jpg'" alt="Profile Image">
+      </ion-avatar>
+      <h1>{{ profile.name }}</h1>
+      <p>&#64;{{ profile.username }}</p>
+    </div>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-text>{{ profile.name }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre de usuario</ion-label>
+        <ion-text>{{ profile.username }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Correo electrónico</ion-label>
+        <ion-text>{{ profile.email }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Rol</ion-label>
+        <ion-text>{{ profile.role }}</ion-text>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" [routerLink]="['../edit-profile']">
+      Editar Perfil
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -19,15 +19,11 @@ const routes: Routes = [
     path: '404',
     loadChildren: () => import('./views/Shared/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
-  {
-    path: '',
-    loadChildren: () => import('./views/child-routes.module').then( m => m.ChildRoutesModule)
-  }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
