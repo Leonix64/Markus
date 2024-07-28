@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './list-profile.component.html',
   styleUrls: ['./list-profile.component.scss'],
 })
-export class ListProfileComponent  implements OnInit {
+export class ListProfileComponent implements OnInit {
 
   profile: any;
 

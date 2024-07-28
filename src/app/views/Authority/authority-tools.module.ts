@@ -4,6 +4,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { SharedToolsModule } from '../Shared/shared-tools.module';
 import { HomeAuthorityComponent } from './home-authority/home-authority.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { AdminToolsModule } from '../Admin/admin-tools.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +14,13 @@ import { HomeAuthorityComponent } from './home-authority/home-authority.componen
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
     IonicModule,
-    SharedToolsModule
+    SharedToolsModule,
+    AdminToolsModule
   ],
-  exports: [HomeAuthorityComponent]
+  exports: []
 })
 export class AuthorityToolsModule { }

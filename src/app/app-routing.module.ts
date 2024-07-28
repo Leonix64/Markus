@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: '', component: LoginComponent
   },
   {
-    path: 'login',
-    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+    path: 'login', component: LoginComponent
   },
   {
-    path: 'register',
-    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
+    path: 'register', component: RegisterComponent
   },
   {
     path: '404',
-    loadChildren: () => import('./views/Shared/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
+    loadChildren: () => import('./views/Shared/page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./views/views-routing.module').then(m => m.ViewsPageRoutingModule)
+  }
 ];
 
 @NgModule({

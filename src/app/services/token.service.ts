@@ -19,10 +19,6 @@ export class TokenService {
     return localStorage.getItem(this.tokenKey) || '';
   }
 
-  removeToken() {
-    localStorage.removeItem(this.tokenKey);
-  }
-
   // userToken
   setRole(role: string) {
     localStorage.setItem(this.roleKey, role);
@@ -32,7 +28,8 @@ export class TokenService {
     return localStorage.getItem(this.roleKey) || '';
   }
 
-  removeRole() {
+  clearAll() {
     localStorage.removeItem(this.roleKey);
+    localStorage.removeItem(this.tokenKey);
   }
 }

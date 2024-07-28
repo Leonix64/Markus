@@ -38,8 +38,7 @@ export class SidebarComponent implements OnInit {
   }
 
   logout() {
-    this.tokenService.removeToken();
-    this.tokenService.removeRole();
+    this.tokenService.clearAll();
     this.closeMenu().then(() => {
       this.router.navigate(['/login']);
     });

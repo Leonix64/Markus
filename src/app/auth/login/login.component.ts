@@ -8,10 +8,10 @@ import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
@@ -37,12 +37,12 @@ export class LoginPage implements OnInit {
 
       this.authService.LoginUser(loginData).subscribe(
         (response) => {
-          // Save token in localStorage
-          this.tokenService.setToken(response.token);
-          this.authService.handleLogin(loginData);
+          // Save token & role in localStorage
+          this.authService.handleLogin(response);
 
           console.log('Inicio de sesión exitoso', response);
           this.toastService.presentToast('Inicio de sesión exitoso');
+          this.router.navigateByUrl('dashboard');
         },
         (error) => {
           console.error('Login failed', error);

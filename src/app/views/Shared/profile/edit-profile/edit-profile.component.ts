@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
-import { Router } from '@angular/router';
+import { RoleService } from 'src/app/services/role.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -16,7 +16,7 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private profileService: ProfileService,
-    private router: Router
+    private roleService: RoleService,
   ) {
     this.profileForm = fb.group({
       profileImage: [''],
@@ -78,7 +78,7 @@ export class EditProfileComponent implements OnInit {
       this.profileService.updateProfile(this.profileForm.value).subscribe(
         response => {
           console.log('Profile updated successfully', response);
-          this.router.navigate(['../list-profile']);
+          this.roleService.redirectBasedOnRole('list-profile');
         },
         err => {
           console.error('Error updating profile', err);

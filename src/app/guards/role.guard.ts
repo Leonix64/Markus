@@ -1,19 +1,33 @@
-import { CanActivateFn, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { inject } from '@angular/core';
-import { TokenService } from '../services/token.service';
+import { Injectable } from "@angular/core";
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, GuardResult, MaybeAsync } from "@angular/router";
+import { TokenService } from "../services/token.service";
 
-export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const router = inject(Router);
-  const tokenService = inject(TokenService);
+@Injectable({
+  providedIn: "root"
+})
 
-  const role = tokenService.getRole();
+export class RoleGuard implements CanActivate {
 
-  const expectedRoles = route.data['expectedRoles'];
+  constructor(
+    private tokenService: TokenService,
+    private router: Router,
+  ) { }
 
-  if (expectedRoles && expectedRoles.includes(role)) {
-    return true;
-  } else {
-    router.navigate(['/404']);
-    return false;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const userRole = this.tokenService.getRole();
+
+    if (userRole === 'user') {
+      this.router.navigate(['/dashboard/user']);
+      return false;
+    } else if (userRole === 'admin') {
+      this.router.navigate(['/dashboard/admin']);
+      return false;
+    } else if (userRole === 'authority') {
+      this.router.navigate(['/dashboard/authority']);
+      return false;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
-};
+}

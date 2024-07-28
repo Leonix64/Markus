@@ -7,12 +7,12 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy, RouterLink } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SharedToolsModule } from './views/Shared/shared-tools.module';
-import { ChildRoutesModule } from './views/child-routes.module';
+import { ViewsPageModule } from './views/views.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,10 +23,11 @@ import { ChildRoutesModule } from './views/child-routes.module';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    RouterLink,
     SharedToolsModule,
-    ChildRoutesModule,
+    ViewsPageModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

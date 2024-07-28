@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { RouterLink } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedToolsModule } from '../Shared/shared-tools.module';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
@@ -12,7 +14,9 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
   imports: [
     CommonModule,
     IonicModule,
-    SharedToolsModule
+    SharedToolsModule,
+    RouterLink,
+    ReactiveFormsModule,
   ],
   exports: [HomeAdminComponent]
 })

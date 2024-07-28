@@ -34,36 +34,12 @@ export class AuthService {
     return this.http.post(registerEndpoint, userData, { headers });
   }
 
-  handleLogin(loginData: LoginData) {
-    this.LoginUser(loginData).subscribe(
-      (res: any) => {
-        if (res.token && res.role) {
-          this.tokenService.setToken(res.token);
-          this.tokenService.setRole(res.role);
-
-          // Role-based redirection
-          switch (res.role) {
-            case 'admin':
-              this.router.navigate(['/admin/home']);
-              break;
-            case 'authority':
-              this.router.navigate(['/authority/home']);
-              break;
-            case 'user':
-              this.router.navigate(['/user/home']);
-              break;
-            default:
-              console.error('Rol no válido');
-              this.router.navigate(['/']);
-              break;
-          }
-        } else {
-          console.error('Respuesta de login inválida', res);
-        }
-      },
-      (error) => {
-        console.error('Error en el login', error);
-      }
-    )
+  handleLogin(response: any) {
+    if (response.token && response.role) {
+      this.tokenService.setToken(response.token);
+      this.tokenService.setRole(response.role);
+    } else {
+      console.error('Respuesta del Login invalida', response);
+    }
   }
 }

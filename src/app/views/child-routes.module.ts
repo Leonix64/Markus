@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { ViewsPage } from './views.page';
 
-import { authGuard } from '../guards/auth.guard';
-import { roleGuard } from '../guards/role.guard';
-
-import { UserToolsModule } from './User/user-tools.module';
-import { AdminToolsModule } from './Admin/admin-tools.module';
-import { AuthorityToolsModule } from './Authority/authority-tools.module';
+// Guards
+import { AuthGuard } from '../guards/auth.guard';
+import { RoleGuard } from '../guards/role.guard';
+import { UserGuard } from '../guards/user.guard';
+import { AdminGuard } from '../guards/admin.guard';
+import { AuthorityGuard } from '../guards/authority.guard';
 
 // User
 import { HomeUserComponent } from './User/home-user/home-user.component';
@@ -25,45 +26,29 @@ import { EditProfileComponent } from './Shared/profile/edit-profile/edit-profile
 
 const routes: Routes = [
   {
-    path: 'user',
-    canActivate: [authGuard, roleGuard],
-    data: { expectedRoles: ['user'] },
+    path: '',
+    component: ViewsPage,
+    canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: HomeUserComponent },
-      { path: 'edit-profile', component: EditProfileComponent },
-      { path: 'list-profile', component: ListProfileComponent }
-    ]
-  },
-  {
-    path: 'admin',
-    canActivate: [authGuard, roleGuard],
-    data: { expectedRoles: ['admin'] },
-    children: [
-      { path: 'home', component: HomeAdminComponent },
-      { path: 'edit-profile', component: EditProfileComponent },
-      { path: 'list-profile', component: ListProfileComponent }
-    ]
-  },
-  {
-    path: 'authority',
-    canActivate: [authGuard, roleGuard],
-    data: { expectedRoles: ['authority'] },
-    children: [
-      { path: 'home', component: HomeAuthorityComponent },
-      { path: 'edit-profile', component: EditProfileComponent },
-      { path: 'list-profile', component: ListProfileComponent }
+      // User
+      { path: 'user/home', canActivate: [UserGuard], component: HomeUserComponent },
+      { path: 'user/list-profile', canActivate: [UserGuard], component: ListProfileComponent },
+      { path: 'user/edit-profile', canActivate: [UserGuard], component: EditProfileComponent },
+      // Admin
+      { path: 'admin/home', canActivate: [AdminGuard], component: HomeAdminComponent },
+      { path: 'admin/list-profile', canActivate: [AdminGuard], component: ListProfileComponent },
+      { path: 'admin/edit-profile', canActivate: [AdminGuard], component: EditProfileComponent },
+      // Authority
+      { path: 'authority/home', canActivate: [AuthorityGuard], component: HomeAuthorityComponent },
+      { path: 'authority/list-profile', canActivate: [AuthorityGuard], component: ListProfileComponent },
+      { path: 'authority/edit-profile', canActivate: [AuthorityGuard], component: EditProfileComponent },
     ]
   }
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
     RouterModule.forChild(routes),
-    IonicModule,
-    UserToolsModule,
-    AdminToolsModule,
-    AuthorityToolsModule
   ],
   exports: [RouterModule]
 })

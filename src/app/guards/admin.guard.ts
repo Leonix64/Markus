@@ -5,8 +5,7 @@ import { TokenService } from "../services/token.service";
 @Injectable({
   providedIn: "root"
 })
-
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(
     private tokenService: TokenService,
@@ -14,12 +13,12 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const token = this.tokenService.getToken();
+    const userRole = this.tokenService.getRole();
 
-    if (token) {
+    if (userRole === 'admin') {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/dashboard', userRole]);
       return false;
     }
   }
