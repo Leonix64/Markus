@@ -28,6 +28,7 @@ export class TokenService {
     return localStorage.getItem(this.roleKey) || '';
   }
 
+  // Clear all tokens
   clearAll() {
     localStorage.removeItem(this.roleKey);
     localStorage.removeItem(this.tokenKey);

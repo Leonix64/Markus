@@ -31,8 +31,4 @@ export class ListProfileComponent implements OnInit {
       }
     );
   }
-
-  goToEdit() {
-    this.router.navigate(['/edit-profile']);
-  }
 }

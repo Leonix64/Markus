@@ -38,8 +38,21 @@ export class AuthService {
     if (response.token && response.role) {
       this.tokenService.setToken(response.token);
       this.tokenService.setRole(response.role);
+      this.redirectBasedOnRoleLogin(response.role);
     } else {
       console.error('Respuesta del Login invalida', response);
+    }
+  }
+
+  private redirectBasedOnRoleLogin(role: string): void {
+    if (role === 'user') {
+      this.router.navigate(['/dashboard/user/home']);
+    } else if (role === 'admin') {
+      this.router.navigate(['/dashboard/admin/home']);
+    } else if (role === 'authority') {
+      this.router.navigate(['/dashboard/authority/home']);
+    } else {
+      this.router.navigate(['/404']);
     }
   }
 }

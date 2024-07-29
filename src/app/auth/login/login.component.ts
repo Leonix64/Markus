@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginData } from 'src/app/interfaces/auth.interface';
 import { ToastService } from 'src/app/services/toast.service';
-import { Router } from '@angular/router';
-import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +17,6 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder,
     private toastService: ToastService,
-    private router: Router,
-    private tokenService: TokenService,
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -42,7 +38,6 @@ export class LoginComponent implements OnInit {
 
           console.log('Inicio de sesión exitoso', response);
           this.toastService.presentToast('Inicio de sesión exitoso');
-          this.router.navigateByUrl('dashboard');
         },
         (error) => {
           console.error('Login failed', error);

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { TokenService } from 'src/app/services/token.service';
 import { TabsService } from 'src/app/services/tabs.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,16 +13,19 @@ import { TabsService } from 'src/app/services/tabs.service';
 export class SidebarComponent implements OnInit {
 
   tabs: any[] = [];
+  username: string = '';
 
   constructor(
     private tokenService: TokenService,
     private router: Router,
     private menu: MenuController,
     private tabsService: TabsService,
+    private profileService: ProfileService,
   ) { }
 
   ngOnInit() {
     this.loadTabs();
+    this.loadUserName();
   }
 
   loadTabs() {
@@ -29,8 +33,19 @@ export class SidebarComponent implements OnInit {
       response => {
         this.tabs = response.tabs;
         console.log('Tabs', this.tabs);
+      },
+      error => {
+        console.error('Error loading tabs', error);
       }
     );
+  }
+
+  loadUserName() {
+    this.profileService.getProfile().forEach(
+      profile => {
+        this.username = profile.username;
+      }
+    )
   }
 
   closeMenu() {
