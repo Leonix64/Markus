@@ -1,9 +1,67 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>Home Admin</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admin Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding">
+  <div class="admin-dashboard">
+    <div class="welcome-card">
+      <h2 class="welcome-message">Welcome, Admin!</h2>
+      <p class="last-login">Last login: Today at 10:30 AM</p>
+    </div>
+    
+    <div class="quick-stats">
+      <div class="stat-card">
+        <ion-icon name="people"></ion-icon>
+        <span class="stat-value">1,234</span>
+        <span class="stat-label">Total Users</span>
+      </div>
+      <div class="stat-card">
+        <ion-icon name="today"></ion-icon>
+        <span class="stat-value">56</span>
+        <span class="stat-label">New Today</span>
+      </div>
+      <div class="stat-card">
+        <ion-icon name="analytics"></ion-icon>
+        <span class="stat-value">89%</span>
+        <span class="stat-label">Activity Rate</span>
+      </div>
+    </div>
+
+    <div class="action-cards">
+      <div class="action-card">
+        <ion-icon name="people-circle"></ion-icon>
+        <h3>Manage Users</h3>
+        <p>View and manage all users in the system</p>
+        <ion-button fill="clear">Manage</ion-button>
+      </div>
+      <div class="action-card">
+        <ion-icon name="bar-chart"></ion-icon>
+        <h3>Reports</h3>
+        <p>Generate and view system reports</p>
+        <ion-button fill="clear">View Reports</ion-button>
+      </div>
+      <div class="action-card">
+        <ion-icon name="settings"></ion-icon>
+        <h3>System Settings</h3>
+        <p>Configure global system parameters</p>
+        <ion-button fill="clear">Configure</ion-button>
+      </div>
+      <div class="action-card">
+        <ion-icon name="shield-checkmark"></ion-icon>
+        <h3>Security</h3>
+        <p>Manage system security and permissions</p>
+        <ion-button fill="clear">Review</ion-button>
+      </div>
+    </div>
+  </div>
 </ion-content>
