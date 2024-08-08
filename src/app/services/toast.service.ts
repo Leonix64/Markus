@@ -19,6 +19,17 @@ export class ToastService {
     toast.present();
   }
 
+  // Mostrar Toast de warning
+  async presentToastWarning(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom',
+      color: 'warning',
+    });
+    toast.present();
+  }
+
   // Mostrar Toast de error
   async presentToastError(message: string) {
     const toast = await this.toastController.create({

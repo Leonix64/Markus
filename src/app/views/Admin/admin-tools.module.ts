@@ -5,11 +5,18 @@ import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedToolsModule } from '../Shared/shared-tools.module';
+
 import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { ListEventComponent } from './events/list-event/list-event.component';
+import { CreateEventComponent } from './events/create-event/create-event.component';
+import { EditEventComponent } from './events/edit-event/edit-event.component';
 
 @NgModule({
   declarations: [
-    HomeAdminComponent
+    HomeAdminComponent,
+    ListEventComponent,
+    CreateEventComponent,
+    EditEventComponent
   ],
   imports: [
     CommonModule,

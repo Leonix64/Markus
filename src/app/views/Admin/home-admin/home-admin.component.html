@@ -40,19 +40,19 @@
     <div class="action-cards">
       <div class="action-card">
         <ion-icon name="people-circle"></ion-icon>
-        <h3>Manage Users</h3>
+        <h3>Crear Evento</h3>
         <p>View and manage all users in the system</p>
-        <ion-button fill="clear">Manage</ion-button>
+        <ion-button fill="clear" [routerLink]="['/dashboard/admin/create-event']">Crear</ion-button>
       </div>
       <div class="action-card">
         <ion-icon name="bar-chart"></ion-icon>
-        <h3>Reports</h3>
+        <h3>Eventos</h3>
         <p>Generate and view system reports</p>
-        <ion-button fill="clear">View Reports</ion-button>
+        <ion-button fill="clear" [routerLink]="['/dashboard/admin/list-event']">Ver Eventos</ion-button>
       </div>
       <div class="action-card">
         <ion-icon name="settings"></ion-icon>
-        <h3>System Settings</h3>
+        <h3>System Settings (coming soon)</h3>
         <p>Configure global system parameters</p>
         <ion-button fill="clear">Configure</ion-button>
       </div>

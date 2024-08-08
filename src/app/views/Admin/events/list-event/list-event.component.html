@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admin Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="upcoming-events">
+    <h1 class="events-title">Upcoming Events</h1>
+    <p class="events-subtitle">Check out our upcoming events and join us for an exciting time.</p>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="3" *ngFor="let event of eventData">
+          <ion-card class="event-card">
+            <img [src]="dataUrltoImage(event.image)" alt="{{ event.name }}" class="event-image"/>
+            <ion-card-header class="event-card-header">
+              <ion-card-subtitle class="event-card-date">{{ event.date | date:'MMM dd, yyyy, HH:mm' }}</ion-card-subtitle>
+              <ion-card-title class="event-card-title">{{ event.name }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="event-card-content">
+              <p class="event-card-description">{{ event.description }}</p>
+              <p class="event-card-location"><strong>Location:</strong> {{ event.location }}</p>
+              <p class="event-card-capacity"><strong>Capacity:</strong> {{ event.capacity }}</p>
+              <p class="event-card-attendees"><strong>Attendees:</strong> {{ event.attendees }}</p>
+            </ion-card-content>
+
+            <ion-button fill="clear" [routerLink]="['/dashboard/admin/edit-event']">Editar Evento</ion-button>
+            <ion-button fill="clear" (click)="deleteEvent(event.id)">Borrar Evento</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

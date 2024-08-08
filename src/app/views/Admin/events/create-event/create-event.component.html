@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admin Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="create-event-content">
+  <div class="create-event-container">
+    <h1 class="create-event-title">Create New Event</h1>
+    <p class="create-event-subtitle">Fill out the form below to create a new event.</p>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="createEventForm" class="create-event-form">
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Event Image</ion-label>
+            <ion-input type="file" (change)="onFileSelected($event)" accept="image/*"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Event Name</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea formControlName="description" rows="4"></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Location</ion-label>
+            <ion-input formControlName="location"></ion-input>
+          </ion-item>
+
+          <ion-grid class="date-time-grid">
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label position="floating">Date</ion-label>
+                  <ion-datetime displayFormat="MMM DD, YYYY" formControlName="date"></ion-datetime>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label position="floating">Time</ion-label>
+                  <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" formControlName="time"></ion-datetime>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <ion-item>
+            <ion-label position="floating">Capacity</ion-label>
+            <ion-input type="number" formControlName="capacity"></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-button expand="block" type="submit" class="submit-button">Create Event</ion-button>
+    </form>
+  </div>
+</ion-content>

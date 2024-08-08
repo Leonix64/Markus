@@ -16,6 +16,9 @@ import { HomeUserComponent } from './User/home-user/home-user.component';
 
 // Admin
 import { HomeAdminComponent } from './Admin/home-admin/home-admin.component';
+import { CreateEventComponent } from './Admin/events/create-event/create-event.component';
+import { ListEventComponent } from './Admin/events/list-event/list-event.component';
+import { EditEventComponent } from './Admin/events/edit-event/edit-event.component';
 
 // Authority
 import { HomeAuthorityComponent } from './Authority/home-authority/home-authority.component';
@@ -34,14 +37,20 @@ const routes: Routes = [
       { path: 'user/home', canActivate: [UserGuard], component: HomeUserComponent },
       { path: 'user/list-profile', canActivate: [UserGuard], component: ListProfileComponent },
       { path: 'user/edit-profile', canActivate: [UserGuard], component: EditProfileComponent },
+
       // Admin
       { path: 'admin/home', canActivate: [AdminGuard], component: HomeAdminComponent },
       { path: 'admin/list-profile', canActivate: [AdminGuard], component: ListProfileComponent },
       { path: 'admin/edit-profile', canActivate: [AdminGuard], component: EditProfileComponent },
+      { path: 'admin/create-event', canActivate: [AdminGuard], component: CreateEventComponent },
+      { path: 'admin/list-event', canActivate: [AdminGuard], component: ListEventComponent },
+      { path: 'admin/edit-event', canActivate: [AdminGuard], component: EditEventComponent },
+
       // Authority
       { path: 'authority/home', canActivate: [AuthorityGuard], component: HomeAuthorityComponent },
       { path: 'authority/list-profile', canActivate: [AuthorityGuard], component: ListProfileComponent },
       { path: 'authority/edit-profile', canActivate: [AuthorityGuard], component: EditProfileComponent },
+
     ]
   }
 ];

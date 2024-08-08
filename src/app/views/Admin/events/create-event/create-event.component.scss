@@ -1,0 +1,135 @@
+.create-event-content {
+    --background: #f0f4f8;
+  }
+  
+  .create-event-container {
+    padding: 24px;
+  }
+  
+  .create-event-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  
+  .create-event-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+  
+  .create-event-form {
+    ion-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+  
+      ion-card-content {
+        padding: 24px;
+      }
+    }
+  
+    ion-item {
+      --background: transparent;
+      --border-color: #d1d1d1;
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      margin-bottom: 16px;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  
+    ion-label {
+      color: #333;
+      font-weight: 500;
+    }
+  
+    ion-input, ion-textarea, ion-datetime {
+      --padding-start: 0;
+      font-size: 16px;
+      color: #333;
+    }
+  }
+  
+  .submit-button {
+    margin-top: 24px;
+    --background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    --border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    height: 48px;
+  }
+  
+  .date-time-grid {
+    ion-col {
+      padding: 0 8px;
+    }
+  
+    ion-item {
+      margin-bottom: 16px;
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .create-event-container {
+      .create-event-title {
+        font-size: 28px;
+      }
+  
+      .create-event-subtitle {
+        font-size: 14px;
+      }
+    }
+  
+    .date-time-grid {
+      ion-col {
+        padding: 0;
+      }
+    }
+  }
+  
+  // Dark mode support
+  @media (prefers-color-scheme: dark) {
+    .create-event-content {
+      --background: #1a1a1a;
+    }
+  
+    .create-event-container {
+      .create-event-title {
+        color: #fff;
+      }
+  
+      .create-event-subtitle {
+        color: #bbb;
+      }
+  
+      .create-event-form {
+        ion-card {
+          background: #2c2c2c;
+        }
+  
+        ion-item {
+          --border-color: #444;
+        }
+  
+        ion-label {
+          color: #fff;
+        }
+  
+        ion-input, ion-textarea, ion-datetime {
+          color: #fff;
+        }
+      }
+  
+      .submit-button {
+        --background: linear-gradient(135deg, #1e3c72, #2a5298);
+      }
+    }
+  }
+  
