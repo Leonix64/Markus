@@ -26,7 +26,7 @@ export class EventsService {
   }
 
   getAllEvents(): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
     const getAllEventsEndpoint = `${this.eventUrl}/event`;
 
     return this.http.get(getAllEventsEndpoint, { headers });

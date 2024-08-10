@@ -42,9 +42,10 @@ const routes: Routes = [
       { path: 'admin/home', canActivate: [AdminGuard], component: HomeAdminComponent },
       { path: 'admin/list-profile', canActivate: [AdminGuard], component: ListProfileComponent },
       { path: 'admin/edit-profile', canActivate: [AdminGuard], component: EditProfileComponent },
+
       { path: 'admin/create-event', canActivate: [AdminGuard], component: CreateEventComponent },
       { path: 'admin/list-event', canActivate: [AdminGuard], component: ListEventComponent },
-      { path: 'admin/edit-event', canActivate: [AdminGuard], component: EditEventComponent },
+      { path: 'admin/edit-event/:id', canActivate: [AdminGuard], component: EditEventComponent },
 
       // Authority
       { path: 'authority/home', canActivate: [AuthorityGuard], component: HomeAuthorityComponent },

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { LoginData, UserData } from '../interfaces/auth.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -18,6 +18,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private tokenService: TokenService,
+    private route: ActivatedRoute,
   ) { }
 
   LoginUser(loginData: LoginData): Observable<any> {

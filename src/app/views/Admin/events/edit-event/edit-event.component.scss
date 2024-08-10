@@ -1,0 +1,140 @@
+.edit-event-content {
+  --background: #f0f4f8;
+}
+
+.edit-event-container {
+  padding: 24px;
+  //max-width: 600px;
+  margin: 0 auto;
+
+  .edit-event-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 12px;
+  }
+
+  .edit-event-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  form {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+
+    .form-group {
+      margin-bottom: 20px;
+
+      ion-label {
+        display: block;
+        color: #333;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      ion-input,
+      ion-textarea,
+      ion-datetime {
+        width: 100%;
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        --padding-start: 16px;
+        --padding-end: 16px;
+        --padding-top: 12px;
+        --padding-bottom: 12px;
+        font-size: 16px;
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      ion-datetime {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      ion-textarea {
+        --padding-top: 12px;
+        --padding-bottom: 12px;
+      }
+    }
+
+    .form-buttons {
+      margin-top: 32px;
+
+      ion-button {
+        margin-bottom: 16px;
+        --border-radius: 8px;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+      }
+
+      .date-time-grid {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-event-container {
+    padding: 16px;
+
+    .edit-event-title {
+      font-size: 24px;
+    }
+
+    .edit-event-subtitle {
+      font-size: 14px;
+    }
+
+    form {
+      padding: 16px;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .edit-event-content {
+    --background: #1a1a1a;
+  }
+
+  .edit-event-container {
+    .edit-event-title {
+      color: #fff;
+    }
+
+    .edit-event-subtitle {
+      color: #bbb;
+    }
+
+    form {
+      background: #2c2c2c;
+
+      .form-group {
+        ion-label {
+          color: #fff;
+        }
+
+        ion-input,
+        ion-textarea,
+        ion-datetime {
+          background: #3a3a3a;
+          border-color: #444;
+          color: #fff;
+
+          &::placeholder {
+            color: #777;
+          }
+        }
+      }
+    }
+  }
+}

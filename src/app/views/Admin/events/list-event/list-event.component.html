@@ -23,7 +23,7 @@
           <ion-card class="event-card">
             <img [src]="dataUrltoImage(event.image)" alt="{{ event.name }}" class="event-image"/>
             <ion-card-header class="event-card-header">
-              <ion-card-subtitle class="event-card-date">{{ event.date | date:'MMM dd, yyyy, HH:mm' }}</ion-card-subtitle>
+              <ion-card-subtitle class="event-card-date">{{ event.date | date:'MMM dd, yyyy, HH:mm' }} - {{ event.time | date:'MMM dd, yyyy, HH:mm' }}</ion-card-subtitle>
               <ion-card-title class="event-card-title">{{ event.name }}</ion-card-title>
             </ion-card-header>
             <ion-card-content class="event-card-content">
@@ -33,7 +33,7 @@
               <p class="event-card-attendees"><strong>Attendees:</strong> {{ event.attendees }}</p>
             </ion-card-content>
 
-            <ion-button fill="clear" [routerLink]="['/dashboard/admin/edit-event']">Editar Evento</ion-button>
+            <ion-button fill="clear" [routerLink]="['/dashboard/admin/edit-event', event.id]">Editar Evento</ion-button>
             <ion-button fill="clear" (click)="deleteEvent(event.id)">Borrar Evento</ion-button>
           </ion-card>
         </ion-col>

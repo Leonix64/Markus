@@ -14,57 +14,57 @@
 
 <ion-content class="create-event-content">
   <div class="create-event-container">
-    <h1 class="create-event-title">Create New Event</h1>
-    <p class="create-event-subtitle">Fill out the form below to create a new event.</p>
+    <h1 class="create-event-title">Crear Nuevo Evento</h1>
+    <p class="create-event-subtitle">Rellena el formulario a continuación para crear un nuevo evento.</p>
 
     <form (ngSubmit)="onSubmit()" [formGroup]="createEventForm" class="create-event-form">
-      <ion-card>
-        <ion-card-content>
-          <ion-item>
-            <ion-label position="floating">Event Image</ion-label>
-            <ion-input type="file" (change)="onFileSelected($event)" accept="image/*"></ion-input>
-          </ion-item>
+      <div class="form-group">
+        <ion-label>Imagen del Evento</ion-label>
+        <ion-button expand="block" fill="outline" (click)="fileInput.click()">
+          <ion-icon name="camera-outline" slot="start"></ion-icon>
+          Subir Imagen
+        </ion-button>
+        <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+      </div>
 
-          <ion-item>
-            <ion-label position="floating">Event Name</ion-label>
-            <ion-input formControlName="name"></ion-input>
-          </ion-item>
+      <div class="form-group">
+        <ion-label>Nombre del Evento</ion-label>
+        <ion-input formControlName="name" placeholder="Ingresa el nombre del evento"></ion-input>
+      </div>
 
-          <ion-item>
-            <ion-label position="floating">Description</ion-label>
-            <ion-textarea formControlName="description" rows="4"></ion-textarea>
-          </ion-item>
+      <div class="form-group">
+        <ion-label>Descripción</ion-label>
+        <ion-textarea formControlName="description" rows="4" placeholder="Ingresa la descripción del evento"></ion-textarea>
+      </div>
 
-          <ion-item>
-            <ion-label position="floating">Location</ion-label>
-            <ion-input formControlName="location"></ion-input>
-          </ion-item>
+      <div class="form-group">
+        <ion-label>Ubicación</ion-label>
+        <ion-input formControlName="location" placeholder="Ingresa la ubicación del evento"></ion-input>
+      </div>
 
-          <ion-grid class="date-time-grid">
-            <ion-row>
-              <ion-col>
-                <ion-item>
-                  <ion-label position="floating">Date</ion-label>
-                  <ion-datetime displayFormat="MMM DD, YYYY" formControlName="date"></ion-datetime>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-item>
-                  <ion-label position="floating">Time</ion-label>
-                  <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" formControlName="time"></ion-datetime>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+      <ion-grid class="date-time-grid">
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <div class="form-group">
+              <ion-label>Fecha</ion-label>
+              <ion-datetime displayFormat="MMM DD, YYYY" formControlName="date" placeholder="Selecciona la fecha"></ion-datetime>
+            </div>
+          </ion-col>
+          <ion-col size="12" size-md="6">
+            <div class="form-group">
+              <ion-label>Hora</ion-label>
+              <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" formControlName="time" placeholder="Selecciona la hora"></ion-datetime>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-          <ion-item>
-            <ion-label position="floating">Capacity</ion-label>
-            <ion-input type="number" formControlName="capacity"></ion-input>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
+      <div class="form-group">
+        <ion-label>Capacidad</ion-label>
+        <ion-input type="number" formControlName="capacity" placeholder="Ingresa la capacidad del evento"></ion-input>
+      </div>
 
-      <ion-button expand="block" type="submit" class="submit-button">Create Event</ion-button>
+      <ion-button expand="block" type="submit" class="submit-button">Crear Evento</ion-button>
     </form>
   </div>
 </ion-content>
