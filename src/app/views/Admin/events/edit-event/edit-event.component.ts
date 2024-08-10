@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { EventsService } from 'src/app/services/events.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-event',
@@ -19,7 +18,6 @@ export class EditEventComponent implements OnInit {
     private eventsService: EventsService,
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService,
     private toastService: ToastService,
   ) {
     this.eventForm = fb.group({
@@ -99,12 +97,12 @@ export class EditEventComponent implements OnInit {
         const base64Data = base64Image.split(',')[1];
         const formattedImage = this.dataUrltoImage(base64Data);
         this.eventForm.patchValue({
-          image: formattedImage,
+          image: this.dataUrltoImage(base64Data),
         });
       };
       reader.readAsDataURL(file);
     }
-  }  
+  }
 
   dataUrltoImage(dataUrl: string) {
     if (dataUrl && !dataUrl.startsWith('data:image')) {
@@ -112,7 +110,7 @@ export class EditEventComponent implements OnInit {
     } else {
       return dataUrl || '../../../../assets/defaultEvent.jpg';
     }
-  }  
+  }
 
   cancelEdit() {
     this.router.navigate(['/dashboard/admin/list-event']);

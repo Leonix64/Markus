@@ -18,6 +18,14 @@
     <p class="create-event-subtitle">Rellena el formulario a continuación para crear un nuevo evento.</p>
 
     <form (ngSubmit)="onSubmit()" [formGroup]="createEventForm" class="create-event-form">
+
+      <div *ngIf="imagePreview" class="image-preview-container">
+        <h3>Vista Previa de la Imagen:</h3>
+        <div class="image-preview-wrapper">
+          <img [src]="imagePreview" alt="Image Preview" />
+        </div>
+      </div>
+
       <div class="form-group">
         <ion-label>Imagen del Evento</ion-label>
         <ion-button expand="block" fill="outline" (click)="fileInput.click()">

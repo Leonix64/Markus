@@ -63,6 +63,21 @@
         --padding-top: 12px;
         --padding-bottom: 12px;
       }
+
+      .image-preview-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 16px;
+
+        img {
+          max-width: 50%;
+          height: auto;
+          border-radius: 8px;
+          object-fit: cover;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+      }
     }
 
     .form-buttons {

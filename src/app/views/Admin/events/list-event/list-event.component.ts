@@ -32,7 +32,10 @@ export class ListEventComponent implements OnInit {
 
   dataUrltoImage(dataUrl: string) {
     if (dataUrl) {
-      return 'data:image/jpeg;base64,' + dataUrl;
+      if (!dataUrl.startsWith('data:image/jpeg;base64,')) {
+        return 'data:image/jpeg;base64,' + dataUrl;
+      }
+      return dataUrl;
     } else {
       return '../../../../assets/defaultEvent.jpg';
     }
@@ -43,7 +46,6 @@ export class ListEventComponent implements OnInit {
       this.eventsService.deleteEvent(eventId).subscribe(
         (response) => {
           console.log('Event deleted successfully', response);
-          //this.eventData = this.eventData.filter((event: any) => event.id !== eventId);
           this.getAllEvents();
         },
         (error) => {

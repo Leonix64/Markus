@@ -12,6 +12,7 @@ export class CreateEventComponent implements OnInit {
 
   createEventForm: FormGroup;
   selectedFile: File | null = null;
+  imagePreview: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,7 @@ export class CreateEventComponent implements OnInit {
         async (response) => {
           this.toastService.presentToast('El evento ha sido creado exitosamente!');
           this.createEventForm.reset();
+          this.imagePreview = null;
         },
         async (err) => {
           this.toastService.presentToastError('Error al crear el evento, intente nuevamente.');
@@ -62,10 +64,9 @@ export class CreateEventComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = () => {
         const base64String = reader.result as string;
-        const base64Data = base64String.split(',')[1];
-        this.createEventForm.patchValue({ image: base64Data });
-        resolve(base64Data);
-        //console.log(base64Data);
+        this.createEventForm.patchValue({ image: base64String });
+        this.imagePreview = base64String; // Asigna la vista previa de la imagen
+        resolve(base64String);
       };
       reader.onerror = () => {
         reject('Error reading file');
