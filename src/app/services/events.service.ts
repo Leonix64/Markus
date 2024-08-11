@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { TokenService } from './token.service';
-import { EventData } from '../interfaces/events.interface';
+import { EventData, AttendeesData } from '../interfaces/events.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -51,19 +51,5 @@ export class EventsService {
     const deleteEventEndpoint = `${this.eventUrl}/event/${eventId}`;
 
     return this.http.delete(deleteEventEndpoint, { headers });
-  }
-
-  registerUser(eventId: string): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
-    const attendEventEndpoint = `${this.eventUrl}/event/${eventId}/register`;
-
-    return this.http.post(attendEventEndpoint, null, { headers });
-  }
-
-  unregisterUser(eventId: string): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
-    const unattendEventEndpoint = `${this.eventUrl}/event/${eventId}/unregister`;
-
-    return this.http.post(unattendEventEndpoint, null, { headers });
   }
 }

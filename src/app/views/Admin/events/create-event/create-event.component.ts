@@ -65,7 +65,7 @@ export class CreateEventComponent implements OnInit {
       reader.onload = () => {
         const base64String = reader.result as string;
         this.createEventForm.patchValue({ image: base64String });
-        this.imagePreview = base64String; // Asigna la vista previa de la imagen
+        this.imagePreview = base64String;
         resolve(base64String);
       };
       reader.onerror = () => {

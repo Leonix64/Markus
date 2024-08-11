@@ -8,3 +8,9 @@ export interface EventData {
     image: string;
     attendees: string[];
 }
+
+export interface AttendeesData {
+    name: string;
+    phone: string;
+    email: string;
+}

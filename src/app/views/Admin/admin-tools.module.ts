@@ -10,13 +10,17 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ListEventComponent } from './events/list-event/list-event.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { EditEventComponent } from './events/edit-event/edit-event.component';
+import { ListAttendeesComponent } from './attendees/list-attendees/list-attendees.component';
+import { CreateAttendeesComponent } from './attendees/create-attendees/create-attendees.component';
 
 @NgModule({
   declarations: [
     HomeAdminComponent,
     ListEventComponent,
     CreateEventComponent,
-    EditEventComponent
+    EditEventComponent,
+    ListAttendeesComponent,
+    CreateAttendeesComponent
   ],
   imports: [
     CommonModule,

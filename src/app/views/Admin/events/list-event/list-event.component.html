@@ -4,11 +4,6 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Admin Dashboard</ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="notifications"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -34,6 +29,9 @@
             </ion-card-content>
 
             <ion-button fill="clear" [routerLink]="['/dashboard/admin/edit-event', event.id]">Editar Evento</ion-button>
+            <ion-button fill="clear" [routerLink]="['/dashboard/admin/create-attendees', event.id]">Registrar Usuarios</ion-button>
+            
+            <ion-button fill="clear">Cancelar Evento</ion-button>
             <ion-button fill="clear" (click)="deleteEvent(event.id)">Borrar Evento</ion-button>
           </ion-card>
         </ion-col>
