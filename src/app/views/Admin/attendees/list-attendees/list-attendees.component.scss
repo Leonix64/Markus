@@ -1,0 +1,183 @@
+.attendees-list-content {
+  --background: #f0f4f8;
+}
+
+.attendees-list-container {
+  padding: 24px;
+  margin: 0 auto;
+
+  .attendees-list-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 12px;
+  }
+
+  .attendees-list-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 24px;
+  }
+
+  .add-attendee-button {
+    margin-bottom: 24px;
+    --border-radius: 8px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+  }
+
+  .attendees-grid {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+
+    .header-row {
+      background-color: #f8f9fa;
+      font-weight: bold;
+      color: #333;
+      padding: 12px 0;
+    }
+
+    .attendee-row {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    ion-col {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+    }
+
+    .attendee-name {
+      display: flex;
+      align-items: center;
+
+      ion-avatar {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      span {
+        font-weight: 500;
+      }
+    }
+
+    .actions-col {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .edit-button,
+      .delete-button {
+        font-size: 14px;
+        margin-right: 8px;
+
+        ion-icon {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .attendees-list-container {
+    padding: 16px;
+
+    .attendees-list-title {
+      font-size: 24px;
+    }
+
+    .attendees-list-subtitle {
+      font-size: 14px;
+    }
+
+    .attendees-grid {
+      .header-row {
+        display: none;
+      }
+
+      .attendee-row {
+        border-bottom: 1px solid #eee;
+        padding: 16px 0;
+
+        ion-col {
+          padding: 4px 16px;
+
+          &:before {
+            content: attr(size-md);
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+          }
+        }
+
+        .actions-col {
+          justify-content: flex-start;
+          padding-top: 8px;
+
+          &:before {
+            content: "Acciones";
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+          }
+
+          .edit-button,
+          .delete-button {
+            margin-right: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .attendees-list-content {
+    --background: #1a1a1a;
+  }
+
+  .attendees-list-container {
+    .attendees-list-title {
+      color: #fff;
+    }
+
+    .attendees-list-subtitle {
+      color: #bbb;
+    }
+
+    .attendees-grid {
+      background: #2c2c2c;
+
+      .header-row {
+        background-color: #3a3a3a;
+        color: #fff;
+      }
+
+      .attendee-row {
+        border-bottom-color: #444;
+      }
+
+      ion-col {
+        color: #fff;
+      }
+
+      .actions-col {
+        .edit-button,
+        .delete-button {
+          --color: #fff;
+        }
+      }
+    }
+  }
+}

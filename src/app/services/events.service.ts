@@ -60,10 +60,10 @@ export class EventsService {
     return this.http.post(attendEventEndpoint, attendeeData, { headers });
   }
 
-  unregisterUser(eventId: string): Observable<any> {
+  unregisterUser(eventId: string, attendeeId: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
-    const unattendEventEndpoint = `${this.eventUrl}/event/${eventId}/unregister`;
+    const unattendEventEndpoint = `${this.eventUrl}/event/${eventId}/attendee/${attendeeId}`;
 
-    return this.http.post(unattendEventEndpoint, { headers });
+    return this.http.delete(unattendEventEndpoint, { headers });
   }
 }

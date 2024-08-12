@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { ActivatedRoute } from '@angular/router';
 import { Attendee } from 'src/app/interfaces/events.interface';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-list-attendees',
@@ -17,6 +18,7 @@ export class ListAttendeesComponent implements OnInit {
   constructor(
     private eventsService: EventsService,
     private route: ActivatedRoute,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -39,5 +41,22 @@ export class ListAttendeesComponent implements OnInit {
         console.error('Error loading event', error);
       }
     );
+  }
+
+  unregisterAttendee(attendeeId: string) {
+    if (confirm('¿Estás seguro de que deseas eliminar a este participante?')) {
+      if (this.eventId) {
+        this.eventsService.unregisterUser(this.eventId, attendeeId).subscribe(
+          () => {
+            this.attendeesData = this.attendeesData.filter(attendee => attendee.id !== attendeeId);
+            this.toastService.presentToast('El participante ha sido eliminado exitosamente!');
+          },
+          (error) => {
+            console.error('Error unregistering attendee', error);
+            this.toastService.presentToastError('Error al eliminar el participante, intente nuevamente.');
+          }
+        );
+      }
+    }
   }
 }

@@ -7,27 +7,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div>
-    <h1>Lista de Participantes del evento {{ eventName }}</h1>
-    <p>A continuación, se mostrará la lista de los Participantes registrados:</p>
+<ion-content class="attendees-list-content">
+  <div class="attendees-list-container">
+    <h1 class="attendees-list-title">Lista de Participantes del evento {{ eventName }}</h1>
+    <p class="attendees-list-subtitle">A continuación, se mostrará la lista de los Participantes registrados:</p>
 
-    <ion-button expand="block" [routerLink]="['/dashboard/admin/create-attendees', eventId]">
+    <ion-button expand="block" [routerLink]="['/dashboard/admin/create-attendees', eventId]" class="add-attendee-button">
       Añadir Participante
     </ion-button>
 
-    <ion-list>
-      <ion-item *ngFor="let attendee of attendeesData">
-        <ion-avatar slot="start">
-          <img src="../../../../../assets/defaultImage.jpg" alt="Avatar">
-        </ion-avatar>
-        <ion-label>
-          <h2>{{ attendee.name }}</h2>
-          <p>Email: {{ attendee.email }}</p>
-          <p>Teléfono: {{ attendee.phone }}</p>
-          <p>ID: {{ attendee.id }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+    <ion-grid class="attendees-grid">
+      <ion-row class="header-row">
+        <ion-col size="12" size-md="2">Nombre</ion-col>
+        <ion-col size="12" size-md="3">Email</ion-col>
+        <ion-col size="12" size-md="2">Teléfono</ion-col>
+        <ion-col size="12" size-md="2">ID</ion-col>
+        <ion-col size="12" size-md="3">Acciones</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let attendee of attendeesData" class="attendee-row">
+        <ion-col size="12" size-md="2">
+          <div class="attendee-name">
+            <ion-avatar>
+              <img src="../../../../../assets/defaultImage.jpg" alt="Avatar">
+            </ion-avatar>
+            <span>{{ attendee.name }}</span>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-md="3">{{ attendee.email }}</ion-col>
+        <ion-col size="12" size-md="2">{{ attendee.phone }}</ion-col>
+        <ion-col size="12" size-md="2">{{ attendee.id }}</ion-col>
+        <ion-col size="12" size-md="3" class="actions-col">
+          <ion-button fill="clear" color="danger" class="delete-button" (click)="unregisterAttendee(attendee.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+            <span>Eliminar</span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
