@@ -1,3 +1,33 @@
-<p>
-  list-attendees works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/admin/list-event"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Admin Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <h1>Lista de Participantes del evento {{ eventName }}</h1>
+    <p>A continuación, se mostrará la lista de los Participantes registrados:</p>
+
+    <ion-button expand="block" [routerLink]="['/dashboard/admin/create-attendees', eventId]">
+      Añadir Participante
+    </ion-button>
+
+    <ion-list>
+      <ion-item *ngFor="let attendee of attendeesData">
+        <ion-avatar slot="start">
+          <img src="../../../../../assets/defaultImage.jpg" alt="Avatar">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ attendee.name }}</h2>
+          <p>Email: {{ attendee.email }}</p>
+          <p>Teléfono: {{ attendee.phone }}</p>
+          <p>ID: {{ attendee.id }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AttendeesService } from 'src/app/services/attendees.service';
+import { EventsService } from 'src/app/services/events.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class CreateAttendeesComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private attendeesService: AttendeesService,
+    private eventsService: EventsService,
     private toastService: ToastService,
     private route: ActivatedRoute,
   ) {
@@ -34,14 +34,14 @@ export class CreateAttendeesComponent implements OnInit {
       const attendeeData = this.createAttendeeForm.value;
 
       if (eventId) {
-        this.attendeesService.registerUser(eventId, attendeeData).subscribe(
+        this.eventsService.registerUser(eventId, attendeeData).subscribe(
           (response) => {
             this.toastService.presentToast('El participante ha sido registrado exitosamente!');
             this.createAttendeeForm.reset();
           },
           (error) => {
             console.error('Error registering participant:', error);
-            this.toastService.presentToastError('Error al registrar el participante, intente nuevamente.');
+            this.toastService.presentToastError('Error al registrar el participante o el evento esta lleno, intente nuevamente.');
           }
         );
       } else {

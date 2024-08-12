@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ListProfileComponent } from './profile/list-profile/list-profile.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     SidebarComponent,
     ListProfileComponent,
     EditProfileComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
     SidebarComponent,
     ListProfileComponent,
     EditProfileComponent,
+    LoadingSpinnerComponent,
     ReactiveFormsModule,
   ]
 })

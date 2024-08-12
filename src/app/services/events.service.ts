@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { TokenService } from './token.service';
-import { EventData, AttendeesData } from '../interfaces/events.interface';
+import { Event, Attendee } from '../interfaces/events.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class EventsService {
     private tokenService: TokenService,
   ) { }
 
-  createEvent(eventData: EventData): Observable<any> {
+  createEvent(eventData: Event): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
     const createEventEndpoint = `${this.eventUrl}/event`;
 
@@ -39,7 +39,7 @@ export class EventsService {
     return this.http.get(getEventByIdEndpoint, { headers });
   }
 
-  updateEvent(eventId: string, eventData: EventData): Observable<any> {
+  updateEvent(eventId: string, eventData: Event): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
     const updateEventEndpoint = `${this.eventUrl}/event/${eventId}`;
 
@@ -51,5 +51,19 @@ export class EventsService {
     const deleteEventEndpoint = `${this.eventUrl}/event/${eventId}`;
 
     return this.http.delete(deleteEventEndpoint, { headers });
+  }
+
+  registerUser(eventId: string, attendeeData: Attendee): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
+    const attendEventEndpoint = `${this.eventUrl}/event/${eventId}/register`;
+
+    return this.http.post(attendEventEndpoint, attendeeData, { headers });
+  }
+
+  unregisterUser(eventId: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.tokenService.getToken()}` });
+    const unattendEventEndpoint = `${this.eventUrl}/event/${eventId}/unregister`;
+
+    return this.http.post(unattendEventEndpoint, { headers });
   }
 }

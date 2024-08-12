@@ -1,31 +1,31 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/dashboard/admin/list-event"></ion-back-button>
     </ion-buttons>
     <ion-title>Admin Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div>
-    <h1>Crear Nuevo Participante</h1>
-    <p>Rellena el formulario a continuación para añadir un nuevo participante.</p>
+<ion-content class="create-attendee-content">
+  <div class="create-attendee-container">
+    <h1 class="create-attendee-title">Crear Nuevo Participante</h1>
+    <p class="create-attendee-subtitle">Rellena el formulario a continuación para añadir un nuevo participante.</p>
 
-    <form (ngSubmit)="onSubmit()" [formGroup]="createAttendeeForm">
-      <ion-item>
+    <form (ngSubmit)="onSubmit()" [formGroup]="createAttendeeForm" class="create-attendee-form">
+      <div class="form-group">
         <ion-label>Nombre Completo</ion-label>
-        <ion-input type="text" formControlName="name" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Telefono</ion-label>
-        <ion-input type="text" formControlName="phone" required></ion-input>
-      </ion-item>
-      <ion-item>
+        <ion-input type="text" formControlName="name" required placeholder="Ingresa el nombre completo"></ion-input>
+      </div>
+      <div class="form-group">
+        <ion-label>Teléfono</ion-label>
+        <ion-input type="tel" formControlName="phone" required placeholder="Ingresa el número de teléfono"></ion-input>
+      </div>
+      <div class="form-group">
         <ion-label>Email</ion-label>
-        <ion-input type="email" formControlName="email" required></ion-input>
-      </ion-item>
-      <ion-button expand="block" type="submit">Añadir Participante</ion-button>
+        <ion-input type="email" formControlName="email" required placeholder="Ingresa el correo electrónico"></ion-input>
+      </div>
+      <ion-button expand="block" type="submit" class="submit-button">Añadir Participante</ion-button>
     </form>
   </div>
 </ion-content>
