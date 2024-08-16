@@ -1,0 +1,68 @@
+import { Component, OnInit } from '@angular/core';
+import { EventsService } from 'src/app/services/events.service';
+
+@Component({
+  selector: 'app-list-archived',
+  templateUrl: './list-archived.component.html',
+  styleUrls: ['./list-archived.component.scss'],
+})
+export class ListArchivedComponent implements OnInit {
+
+  archivedEventData: any;
+
+  constructor(
+    private eventsService: EventsService,
+  ) { }
+
+  ngOnInit() {
+    this.getAllEventsArchived();
+  }
+
+  getAllEventsArchived() {
+    this.eventsService.getArchivedEvents().subscribe(
+      (data) => {
+        this.archivedEventData = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  restoreEvent(eventId: string) {
+    if (confirm('¿Estás seguro de que quieres restaurar este evento?')) {
+      this.eventsService.unarchiveEvent(eventId).subscribe(
+        (response) => {
+          console.log('Event restored successfully', response);
+          this.getAllEventsArchived();
+        }
+      )
+    }
+  }
+
+  deleteEvent(eventId: string) {
+    if (confirm('¿Estás seguro de que quieres borrar este evento?')) {
+      this.eventsService.deleteEvent(eventId).subscribe(
+        (response) => {
+          console.log('Event deleted successfully', response);
+          this.getAllEventsArchived();
+        },
+        (error) => {
+          console.error('Error deleting event', error);
+        }
+      );
+    }
+  }
+
+  dataUrltoImage(dataUrl: string) {
+    if (dataUrl) {
+      if (!dataUrl.startsWith('data:image/jpeg;base64,')) {
+        return 'data:image/jpeg;base64,' + dataUrl;
+      }
+      return dataUrl;
+    } else {
+      return '../../../../assets/defaultEvent.jpg';
+    }
+  }
+}

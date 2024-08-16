@@ -19,7 +19,7 @@ export class ListEventComponent implements OnInit {
   }
 
   getAllEvents() {
-    this.eventsService.getAllEvents().subscribe(
+    this.eventsService.getNonArchivedEvents().subscribe(
       (data) => {
         this.eventData = data;
         console.log(data);
@@ -41,17 +41,17 @@ export class ListEventComponent implements OnInit {
     }
   }
 
-  deleteEvent(eventId: string) {
-    if (confirm('¿Estás seguro de que quieres borrar este evento?')) {
-      this.eventsService.deleteEvent(eventId).subscribe(
+  archivatedEvent(event: string) {
+    if (confirm('¿Estás seguro de que quieres archivar este evento?')) {
+      this.eventsService.archiveEvent(event).subscribe(
         (response) => {
-          console.log('Event deleted successfully', response);
+          console.log('Event archived successfully', response);
           this.getAllEvents();
         },
         (error) => {
-          console.error('Error deleting event', error);
+          console.error('Error archiving event', error);
         }
-      );
+      )
     }
   }
 }

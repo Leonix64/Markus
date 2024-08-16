@@ -14,6 +14,7 @@ export interface Attendee {
     time: string;
     capacity: number;
     image: string;
+    isArchived: boolean;
     attendees: Attendee[];
   }
   

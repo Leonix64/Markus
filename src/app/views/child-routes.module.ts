@@ -21,6 +21,7 @@ import { ListEventComponent } from './Admin/events/list-event/list-event.compone
 import { EditEventComponent } from './Admin/events/edit-event/edit-event.component';
 import { ListAttendeesComponent } from './Admin/attendees/list-attendees/list-attendees.component';
 import { CreateAttendeesComponent } from './Admin/attendees/create-attendees/create-attendees.component';
+import { ListArchivedComponent } from './Admin/archived/list-archived/list-archived.component';
 
 // Authority
 import { HomeAuthorityComponent } from './Authority/home-authority/home-authority.component';
@@ -51,6 +52,8 @@ const routes: Routes = [
 
       { path: 'admin/list-attendees/:id', canActivate: [AdminGuard], component: ListAttendeesComponent },
       { path: 'admin/create-attendees/:id', canActivate: [AdminGuard], component: CreateAttendeesComponent },
+
+      { path: 'admin/list-archived', canActivate: [AdminGuard], component: ListArchivedComponent },
 
       // Authority
       { path: 'authority/home', canActivate: [AuthorityGuard], component: HomeAuthorityComponent },

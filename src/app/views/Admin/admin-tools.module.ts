@@ -12,6 +12,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { EditEventComponent } from './events/edit-event/edit-event.component';
 import { ListAttendeesComponent } from './attendees/list-attendees/list-attendees.component';
 import { CreateAttendeesComponent } from './attendees/create-attendees/create-attendees.component';
+import { ListArchivedComponent } from './archived/list-archived/list-archived.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CreateAttendeesComponent } from './attendees/create-attendees/create-at
     CreateEventComponent,
     EditEventComponent,
     ListAttendeesComponent,
-    CreateAttendeesComponent
+    CreateAttendeesComponent,
+    ListArchivedComponent
   ],
   imports: [
     CommonModule,

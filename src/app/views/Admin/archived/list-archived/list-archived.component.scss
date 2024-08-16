@@ -1,0 +1,188 @@
+ion-content {
+  --background: #f0f4f8;
+}
+
+.archived-events {
+  padding: 24px;
+
+  .events-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  .events-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  ion-grid {
+    --ion-grid-padding: 0;
+  }
+
+  .event-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    opacity: 0.8;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    &.archived {
+      border: 2px solid #ff9800;
+    }
+
+    .event-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      filter: grayscale(50%);
+    }
+
+    .event-card-header {
+      background: linear-gradient(135deg, #808080, #a9a9a9);
+      padding: 20px;
+
+      .event-card-date {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .event-card-title {
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+      }
+    }
+
+    .event-card-content {
+      padding: 20px;
+
+      .event-card-description,
+      .event-card-location,
+      .event-card-capacity,
+      .event-card-attendees,
+      .event-card-status {
+        color: #666;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 10px;
+
+        strong {
+          color: #333;
+        }
+      }
+
+      .event-card-status {
+        font-weight: bold;
+        color: #ff9800;
+      }
+    }
+
+    .event-button {
+      --color: #3a7bd5;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin: 8px;
+
+      &.restore-button {
+        --color: #4caf50;
+      }
+
+      &.delete-button {
+        --color: #f44336;
+      }
+
+      &:hover {
+        --background: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .archived-events {
+    .events-title {
+      font-size: 28px;
+    }
+
+    .events-subtitle {
+      font-size: 14px;
+    }
+
+    .event-card {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  ion-content {
+    --background: #1a1a1a;
+  }
+
+  .archived-events {
+    .events-title {
+      color: #fff;
+    }
+
+    .events-subtitle {
+      color: #bbb;
+    }
+
+    .event-card {
+      background: #2c2c2c;
+
+      &.archived {
+        border-color: #ff9800;
+      }
+
+      .event-card-header {
+        background: linear-gradient(135deg, #4a4a4a, #6a6a6a);
+      }
+
+      .event-card-date,
+      .event-card-description,
+      .event-card-location,
+      .event-card-capacity,
+      .event-card-attendees,
+      .event-card-status {
+        color: #bbb;
+      }
+
+      .event-card-description strong,
+      .event-card-location strong,
+      .event-card-capacity strong,
+      .event-card-attendees strong,
+      .event-card-status strong {
+        color: #fff;
+      }
+
+      .event-button {
+        --color: #64b5f6;
+
+        &.restore-button {
+          --color: #81c784;
+        }
+
+        &.delete-button {
+          --color: #e57373;
+        }
+
+        &:hover {
+          --background: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}

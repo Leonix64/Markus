@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/dashboard/admin/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Admin Dashboard</ion-title>
   </ion-toolbar>
@@ -31,8 +31,7 @@
             <ion-button fill="clear" class="event-button edit-button" [routerLink]="['/dashboard/admin/edit-event', event.id]">Editar Evento</ion-button>
             <ion-button fill="clear" class="event-button attendees-button" [routerLink]="['/dashboard/admin/list-attendees', event.id]">Usuarios Registrados</ion-button>
             
-            <ion-button fill="clear" class="event-button cancel-button">Cancelar Evento</ion-button>
-            <ion-button fill="clear" class="event-button delete-button" (click)="deleteEvent(event.id)">Borrar Evento</ion-button>
+            <ion-button fill="clear" class="event-button cancel-button" (click)="archivatedEvent(event.id)">Archivar Evento</ion-button>
           </ion-card>
         </ion-col>
       </ion-row>

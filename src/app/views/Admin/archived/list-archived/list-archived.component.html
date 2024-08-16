@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/admin/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Eventos Archivados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="archived-events">
+    <h1 class="events-title">Eventos Archivados</h1>
+    <p class="events-subtitle">Aquí puedes ver los eventos que han sido archivados o cancelados.</p>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="3" *ngFor="let event of archivedEventData">
+          <ion-card class="event-card archived">
+            <img [src]="dataUrltoImage(event.image)" alt="{{ event.name }}" class="event-image"/>
+            <ion-card-header class="event-card-header">
+              <ion-card-subtitle class="event-card-date">{{ event.date | date:'MMM dd, yyyy, HH:mm' }} - {{ event.time | date:'MMM dd, yyyy, HH:mm' }}</ion-card-subtitle>
+              <ion-card-title class="event-card-title">{{ event.name }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="event-card-content">
+              <p class="event-card-description">{{ event.description }}</p>
+              <p class="event-card-location"><strong>Ubicación:</strong> {{ event.location }}</p>
+              <p class="event-card-capacity"><strong>Capacidad:</strong> {{ event.capacity }}</p>
+              <p class="event-card-attendees"><strong>Asistentes registrados:</strong> {{ event.attendees.length }}</p>
+              <p class="event-card-status"><strong>Estado:</strong> {{ event.isArchived }}</p>
+            </ion-card-content>
+
+            <ion-button fill="clear" class="event-button restore-button" (click)="restoreEvent(event.id)">Restaurar Evento</ion-button>
+            <ion-button fill="clear" class="event-button delete-button" (click)="deleteEvent(event.id)">Eliminar Permanentemente</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
