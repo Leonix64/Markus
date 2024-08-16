@@ -1,0 +1,46 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/admin/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Admin Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="stats-dashboard">
+    <h1 class="stats-title">Resumen de Estadísticas</h1>
+    <p class="stats-subtitle">Un vistazo rápido a los números clave de nuestra plataforma.</p>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6">
+          <ion-card class="stat-card">
+            <ion-card-header>
+              <ion-card-subtitle>Total de Eventos</ion-card-subtitle>
+              <ion-card-title class="stat-number">{{ statsData?.totalEvents || 0 }}</ion-card-title>
+              <ion-card-subtitle>Eventos Vigentes</ion-card-subtitle>
+              <ion-card-title class="stat-number">{{ statsData?.totalNonArchivedEvents || 0 }}</ion-card-title>
+              <ion-card-subtitle>Eventos Archivados</ion-card-subtitle>
+              <ion-card-title class="stat-number">{{ statsData?.totalArchivedEvents || 0 }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Eventos creados en la plataforma</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <ion-card class="stat-card">
+            <ion-card-header>
+              <ion-card-subtitle>Total de Usuarios</ion-card-subtitle>
+              <ion-card-title class="stat-number">{{ statsData?.totalAttendees || 0 }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Usuarios registrados en la plataforma</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

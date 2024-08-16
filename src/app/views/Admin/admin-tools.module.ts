@@ -12,7 +12,9 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { EditEventComponent } from './events/edit-event/edit-event.component';
 import { ListAttendeesComponent } from './attendees/list-attendees/list-attendees.component';
 import { CreateAttendeesComponent } from './attendees/create-attendees/create-attendees.component';
-import { ListArchivedComponent } from './archived/list-archived/list-archived.component';
+import { ListArchivedComponent } from './events/list-archived/list-archived.component';
+import { StatsDashboardComponent } from './stats/stats-dashboard/stats-dashboard.component';
+import { EventReportComponent } from './stats/event-report/event-report.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ListArchivedComponent } from './archived/list-archived/list-archived.co
     EditEventComponent,
     ListAttendeesComponent,
     CreateAttendeesComponent,
-    ListArchivedComponent
+    ListArchivedComponent,
+    StatsDashboardComponent,
+    EventReportComponent
   ],
   imports: [
     CommonModule,

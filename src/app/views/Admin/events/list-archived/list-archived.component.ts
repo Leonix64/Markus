@@ -8,7 +8,7 @@ import { EventsService } from 'src/app/services/events.service';
 })
 export class ListArchivedComponent implements OnInit {
 
-  archivedEventData: any;
+  archivedEventData: any | null = null;
 
   constructor(
     private eventsService: EventsService,

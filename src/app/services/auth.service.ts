@@ -12,7 +12,7 @@ import { TokenService } from './token.service';
 export class AuthService {
 
   private apiUrl = environment.apiUrl;
-  private loginUrl = `${this.apiUrl}/auth`;
+  private authUrl = `${this.apiUrl}/auth`;
 
   constructor(
     private http: HttpClient,
@@ -23,14 +23,14 @@ export class AuthService {
 
   LoginUser(loginData: LoginData): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const loginEndpoint = `${this.loginUrl}/login`;
+    const loginEndpoint = `${this.authUrl}/login`;
 
     return this.http.post(loginEndpoint, loginData, { headers });
   }
 
   RegisterUser(userData: UserData): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const registerEndpoint = `${this.loginUrl}/register`;
+    const registerEndpoint = `${this.authUrl}/register`;
 
     return this.http.post(registerEndpoint, userData, { headers });
   }
