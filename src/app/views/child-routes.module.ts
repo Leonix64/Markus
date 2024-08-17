@@ -56,7 +56,6 @@ const routes: Routes = [
       { path: 'admin/list-attendees/:id', canActivate: [AdminGuard], component: ListAttendeesComponent },
       { path: 'admin/create-attendees/:id', canActivate: [AdminGuard], component: CreateAttendeesComponent },
       
-      { path: 'admin/stats-dashboard', canActivate: [AdminGuard], component: StatsDashboardComponent },
       { path: 'admin/event-report/:id', canActivate: [AdminGuard], component: EventReportComponent },
 
       // Authority

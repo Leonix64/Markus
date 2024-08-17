@@ -18,55 +18,39 @@
       <h2 class="welcome-message">Welcome, Admin!</h2>
       <p class="last-login">Last login: Today at 10:30 AM</p>
     </div>
-    
-    <div class="quick-stats">
-      <div class="stat-card">
-        <ion-icon name="people"></ion-icon>
-        <span class="stat-value">1,234</span>
-        <span class="stat-label">Total Users</span>
-      </div>
-      <div class="stat-card">
-        <ion-icon name="today"></ion-icon>
-        <span class="stat-value">56</span>
-        <span class="stat-label">New Today</span>
-      </div>
-      <div class="stat-card">
-        <ion-icon name="analytics"></ion-icon>
-        <span class="stat-value">89%</span>
-        <span class="stat-label">Activity Rate</span>
-      </div>
-    </div>
+
+    <app-stats-dashboard></app-stats-dashboard>
 
     <div class="action-cards">
       <div class="action-card">
-        <ion-icon name="people-circle"></ion-icon>
+        <ion-icon name="add-circle-outline"></ion-icon>
         <h3>Crear Evento</h3>
-        <p>View and manage all users in the system</p>
+        <p>Crea un nuevo evento en el sistema</p>
         <ion-button fill="clear" [routerLink]="['/dashboard/admin/create-event']">Crear</ion-button>
       </div>
       <div class="action-card">
-        <ion-icon name="bar-chart"></ion-icon>
-        <h3>Eventos</h3>
-        <p>Generate and view system reports</p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <h3>Eventos Activos</h3>
+        <p>Visualiza y gestiona todos los eventos activos</p>
         <ion-button fill="clear" [routerLink]="['/dashboard/admin/list-event']">Ver Eventos</ion-button>
       </div>
       <div class="action-card">
-        <ion-icon name="bar-chart"></ion-icon>
+        <ion-icon name="archive-outline"></ion-icon>
         <h3>Eventos Archivados</h3>
-        <p>Generate and view system reports</p>
-        <ion-button fill="clear" [routerLink]="['/dashboard/admin/list-archived']">Ver Eventos Archivados</ion-button>
+        <p>Revisa los eventos que han sido archivados</p>
+        <ion-button fill="clear" [routerLink]="['/dashboard/admin/list-archived']">Ver Archivados</ion-button>
       </div>
       <div class="action-card">
-        <ion-icon name="settings"></ion-icon>
-        <h3>Estadisticas</h3>
-        <p>Configure global system parameters</p>
-        <ion-button fill="clear" [routerLink]="['/dashboard/admin/stats-dashboard']">Configure</ion-button>
+        <ion-icon name="settings-outline"></ion-icon>
+        <h3>Configuración</h3>
+        <p>Configura los parámetros globales del sistema</p>
+        <ion-button fill="clear">Configurar</ion-button>
       </div>
       <div class="action-card">
-        <ion-icon name="shield-checkmark"></ion-icon>
-        <h3>Security</h3>
-        <p>Manage system security and permissions</p>
-        <ion-button fill="clear">Review</ion-button>
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <h3>Seguridad</h3>
+        <p>Gestiona la seguridad y permisos del sistema</p>
+        <ion-button fill="clear">Revisar</ion-button>
       </div>
     </div>
   </div>
