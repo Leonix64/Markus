@@ -29,6 +29,7 @@
               <p class="event-card-status"><strong>Estado:</strong> {{ event.isArchived }}</p>
             </ion-card-content>
 
+            <ion-button fill="clear" class="event-button attendees-button" [routerLink]="['/dashboard/admin/list-attendees', event.id]">Usuarios Registrados</ion-button>
             <ion-button fill="clear" class="event-button restore-button" (click)="restoreEvent(event.id)">Restaurar Evento</ion-button>
             <ion-button fill="clear" class="event-button delete-button" (click)="deleteEvent(event.id)">Eliminar Permanentemente</ion-button>
           </ion-card>

@@ -12,7 +12,7 @@
     <h1 class="attendees-list-title">Lista de Participantes del evento {{ eventName }}</h1>
     <p class="attendees-list-subtitle">A continuación, se mostrará la lista de los Participantes registrados:</p>
 
-    <ion-button expand="block" [routerLink]="['/dashboard/admin/create-attendees', eventId]" class="add-attendee-button">
+    <ion-button expand="block" [routerLink]="['/dashboard/admin/create-attendees', eventId]" class="add-attendee-button" [disabled]="isArchived">
       Añadir Participante
     </ion-button>
 

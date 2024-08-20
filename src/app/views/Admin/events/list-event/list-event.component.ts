@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Event } from 'src/app/interfaces/events.interface';
 import { EventsService } from 'src/app/services/events.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { EventsService } from 'src/app/services/events.service';
 })
 export class ListEventComponent implements OnInit {
 
-  eventData: any;
+  eventData: Event[] = [];
 
   constructor(
     private eventsService: EventsService,
@@ -41,9 +42,9 @@ export class ListEventComponent implements OnInit {
     }
   }
 
-  archivatedEvent(event: string) {
+  archivatedEvent(eventId: string) {
     if (confirm('¿Estás seguro de que quieres archivar este evento?')) {
-      this.eventsService.archiveEvent(event).subscribe(
+      this.eventsService.archiveEvent(eventId).subscribe(
         (response) => {
           console.log('Event archived successfully', response);
           this.getAllEvents();

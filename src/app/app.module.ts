@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SharedToolsModule } from './views/Shared/shared-tools.module';
 import { ViewsPageModule } from './views/views.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,9 @@ import { ViewsPageModule } from './views/views.module';
     SharedToolsModule,
     ViewsPageModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

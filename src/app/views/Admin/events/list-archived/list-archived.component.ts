@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
+import { Event } from 'src/app/interfaces/events.interface';
 
 @Component({
   selector: 'app-list-archived',
@@ -8,7 +9,7 @@ import { EventsService } from 'src/app/services/events.service';
 })
 export class ListArchivedComponent implements OnInit {
 
-  archivedEventData: any | null = null;
+  archivedEventData: Event[] = [];
 
   constructor(
     private eventsService: EventsService,

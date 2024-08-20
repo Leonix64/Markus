@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { ActivatedRoute } from '@angular/router';
-import { Attendee } from 'src/app/interfaces/events.interface';
+import { Attendee, Event } from 'src/app/interfaces/events.interface';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class ListAttendeesComponent implements OnInit {
   eventName: string = '';
   eventId: string | null = null;
   attendeesData: Attendee[] = [];
+  isArchived: boolean = false;
 
   constructor(
     private eventsService: EventsService,
@@ -25,7 +26,25 @@ export class ListAttendeesComponent implements OnInit {
     this.eventId = this.route.snapshot.paramMap.get('id');
     if (this.eventId) {
       this.loadEvent(this.eventId);
+      this.checkIfArchived(this.eventId);
     }
+  }
+
+  // Function to check if the event is archived
+  checkIfArchived(eventId: string) {
+    this.eventsService.getArchivedEvents().subscribe(
+      (response: Event[]) => {
+        // Find the corresponding event
+        const event = response.find(event => event.id === eventId);
+        if (event) {
+          this.isArchived = event.isArchived;
+          console.log(`Evento ${event.name} (ID ${event.id}) is archived: ${this.isArchived}`);
+        }
+      },
+      (error) => {
+        console.error('Error retrieving archived events', error);
+      }
+    );
   }
 
   loadEvent(eventId: string) {
@@ -34,7 +53,6 @@ export class ListAttendeesComponent implements OnInit {
         if (response) {
           this.eventName = response.name;
           this.attendeesData = response.attendees || []; // Assign assistants
-          //console.log('Data Attendees:', this.eventName, this.attendeesData);
         }
       },
       (error) => {
