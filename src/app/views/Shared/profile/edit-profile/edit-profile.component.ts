@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { RoleService } from 'src/app/services/role.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,7 +18,7 @@ export class EditProfileComponent implements OnInit {
     private fb: FormBuilder,
     private profileService: ProfileService,
     private roleService: RoleService,
-    private toastService: ToastService,
+    private notificationService: NotificationService,
   ) {
     this.profileForm = fb.group({
       profileImage: [''],
@@ -80,12 +80,12 @@ export class EditProfileComponent implements OnInit {
       this.profileService.updateProfile(this.profileForm.value).subscribe(
         response => {
           console.log('Profile updated successfully', response);
-          this.toastService.presentToast('Profile actualizado exitosamente!');
+          this.notificationService.presentToast('Profile actualizado exitosamente!');
           this.roleService.redirectBasedOnRole('list-profile');
         },
         err => {
           console.error('Error updating profile', err);
-          this.toastService.presentToastError('Error al actualizar el profile, intente nuevamente.');
+          this.notificationService.presentToastError('Error al actualizar el profile, intente nuevamente.');
         }
       )
     }

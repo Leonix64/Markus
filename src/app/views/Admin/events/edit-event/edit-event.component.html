@@ -15,7 +15,7 @@
     <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <ion-label>Imagen del Evento</ion-label>
-        <div class="image-preview-container" *ngIf="eventForm.get('image')?.value">
+        <div class="image-preview-container" *ngIf="eventForm.get('image')?.value && eventForm.get('image')?.value != '../../../../assets/defaultEvent.jpg'">
           <img [src]="eventForm.get('image')?.value" alt="Vista Previa de Imagen del Evento" />
         </div>
       

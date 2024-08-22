@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EventsService } from 'src/app/services/events.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastService } from 'src/app/services/toast.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-edit-event',
@@ -18,7 +18,7 @@ export class EditEventComponent implements OnInit {
     private eventsService: EventsService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastService: ToastService,
+    private notificationService: NotificationService,
   ) {
     this.eventForm = fb.group({
       name: [''],
@@ -62,18 +62,25 @@ export class EditEventComponent implements OnInit {
   onSubmit() {
     if (this.eventForm.valid) {
       const eventId = this.route.snapshot.paramMap.get('id');
-      const updatedEvent = this.eventForm.value;
+      const updatedEvent = { ...this.eventForm.value };
 
       if (eventId) {
-        this.eventsService.updateEvent(eventId, updatedEvent).subscribe(
-          (response) => {
-            console.log('Event updated successfully', response);
-            this.toastService.presentToast('El evento ha sido actualizado exitosamente!');
-            this.router.navigate(['/dashboard/admin/list-event']);
-          },
-          (error) => {
-            console.error('Error updating event', error);
-            this.toastService.presentToastError('Error al actualizar el evento, intente nuevamente.');
+        // Confirmación antes de la actualización
+        this.notificationService.presentConfirm(
+          'Confirmar Actualización',
+          '¿Estás seguro de que deseas actualizar este evento?',
+          () => {
+            this.eventsService.updateEvent(eventId, updatedEvent).subscribe(
+              (response) => {
+                console.log('Event updated successfully', response);
+                this.notificationService.presentToast('El evento ha sido actualizado exitosamente!');
+                this.router.navigate(['/dashboard/admin/list-event']);
+              },
+              (error) => {
+                console.error('Error updating event', error);
+                this.notificationService.presentToastError('Error al actualizar el evento, intente nuevamente.');
+              }
+            );
           }
         );
       } else {
@@ -108,7 +115,7 @@ export class EditEventComponent implements OnInit {
     if (dataUrl && !dataUrl.startsWith('data:image')) {
       return 'data:image/jpeg;base64,' + dataUrl;
     } else {
-      return dataUrl || '../../../../assets/defaultEvent.jpg';
+      return dataUrl || '';
     }
   }
 

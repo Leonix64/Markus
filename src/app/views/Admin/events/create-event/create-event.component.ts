@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventsService } from 'src/app/services/events.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-create-event',
@@ -17,7 +17,7 @@ export class CreateEventComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private eventsService: EventsService,
-    private toastService: ToastService,
+    private notificationService: NotificationService
   ) {
     this.createEventForm = this.fb.group({
       name: ['', Validators.required],
@@ -38,17 +38,17 @@ export class CreateEventComponent implements OnInit {
 
       this.eventsService.createEvent(eventData).subscribe(
         async (response) => {
-          this.toastService.presentToast('El evento ha sido creado exitosamente!');
+          this.notificationService.presentToast('El evento ha sido creado exitosamente!');
           this.createEventForm.reset();
           this.imagePreview = null;
         },
         async (err) => {
-          this.toastService.presentToastError('Error al crear el evento, intente nuevamente.');
+          this.notificationService.presentToastError('Error al crear el evento, intente nuevamente.');
           console.error('Error creating event:', err);
         }
       )
     } else {
-      this.toastService.presentToastWarning('Por favor rellene todos los campos necesarios.');
+      this.notificationService.presentToastWarning('Por favor rellene todos los campos necesarios.');
     }
   }
 

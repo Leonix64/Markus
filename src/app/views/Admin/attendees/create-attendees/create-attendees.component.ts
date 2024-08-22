@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventsService } from 'src/app/services/events.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class CreateAttendeesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private eventsService: EventsService,
-    private toastService: ToastService,
+    private notificationService: NotificationService,
     private route: ActivatedRoute,
   ) {
     this.createAttendeeForm = this.fb.group({
@@ -36,19 +36,19 @@ export class CreateAttendeesComponent implements OnInit {
       if (eventId) {
         this.eventsService.registerUser(eventId, attendeeData).subscribe(
           (response) => {
-            this.toastService.presentToast('El participante ha sido registrado exitosamente!');
+            this.notificationService.presentToast('El participante ha sido registrado exitosamente!');
             this.createAttendeeForm.reset();
           },
           (error) => {
             console.error('Error registering participant:', error);
-            this.toastService.presentToastError('Error al registrar el participante o el evento esta lleno, intente nuevamente.');
+            this.notificationService.presentToastError('Error al registrar el participante o el evento esta lleno, intente nuevamente.');
           }
         );
       } else {
-        this.toastService.presentToastWarning('ID de evento no encontrado.');
+        this.notificationService.presentToastWarning('ID de evento no encontrado.');
       }
     } else {
-      this.toastService.presentToastWarning('Por favor rellene todos los campos necesarios.');
+      this.notificationService.presentToastWarning('Por favor rellene todos los campos necesarios.');
     }
   }
 }

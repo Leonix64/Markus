@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginData } from 'src/app/interfaces/auth.interface';
-import { ToastService } from 'src/app/services/toast.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private toastService: ToastService,
+    private notificationService: NotificationService,
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -37,11 +37,11 @@ export class LoginComponent implements OnInit {
           this.authService.handleLogin(response);
 
           console.log('Inicio de sesión exitoso', response);
-          this.toastService.presentToast('Inicio de sesión exitoso');
+          this.notificationService.presentToast('Inicio de sesión exitoso');
         },
         (error) => {
           console.error('Login failed', error);
-          this.toastService.presentToastError('Error al iniciar sesión');
+          this.notificationService.presentToastError('Error al iniciar sesión');
         }
       );
     }
