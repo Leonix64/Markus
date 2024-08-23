@@ -62,19 +62,25 @@ export class ListAttendeesComponent implements OnInit {
   }
 
   unregisterAttendee(attendeeId: string) {
-    if (confirm('¿Estás seguro de que deseas eliminar a este participante?')) {
-      if (this.eventId) {
-        this.eventsService.unregisterUser(this.eventId, attendeeId).subscribe(
-          () => {
-            this.attendeesData = this.attendeesData.filter(attendee => attendee.id !== attendeeId);
-            this.notificationService.presentToast('El participante ha sido eliminado exitosamente!');
-          },
-          (error) => {
-            console.error('Error unregistering attendee', error);
-            this.notificationService.presentToastError('Error al eliminar el participante, intente nuevamente.');
-          }
-        );
-      }
+    if (this.eventId) {
+      this.notificationService.presentConfirm(
+        'Eliminar Participante',
+        '¿Estás seguro de que deseas eliminar a este participante?',
+        () => {
+          this.eventsService.unregisterUser(this.eventId!, attendeeId).subscribe(
+            () => {
+              this.attendeesData = this.attendeesData.filter(attendee => attendee.id !== attendeeId);
+              this.notificationService.presentToast('El participante ha sido eliminado exitosamente!');
+            },
+            (error) => {
+              console.error('Error unregistering attendee', error);
+              this.notificationService.presentToastError('Error al eliminar el participante, intente nuevamente.');
+            }
+          );
+        }
+      );
+    } else {
+      console.error('Participant cannot be deleted because eventId is null');
     }
   }
 }

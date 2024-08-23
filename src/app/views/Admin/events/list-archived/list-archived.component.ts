@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { Event } from 'src/app/interfaces/events.interface';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-list-archived',
@@ -13,6 +14,7 @@ export class ListArchivedComponent implements OnInit {
 
   constructor(
     private eventsService: EventsService,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit() {
@@ -32,28 +34,39 @@ export class ListArchivedComponent implements OnInit {
   }
 
   restoreEvent(eventId: string) {
-    if (confirm('¿Estás seguro de que quieres restaurar este evento?')) {
-      this.eventsService.unarchiveEvent(eventId).subscribe(
-        (response) => {
-          console.log('Event restored successfully', response);
-          this.getAllEventsArchived();
-        }
-      )
-    }
+    this.notificationService.presentConfirm(
+      'Restaurar Evento',
+      '¿Estás seguro de que quieres restaurar este evento?',
+      () => {
+        this.eventsService.unarchiveEvent(eventId).subscribe(
+          (response) => {
+            console.log('Event restored successfully', response);
+            this.getAllEventsArchived();
+            this.notificationService.presentToast('El evento ha sido restaurado exitosamente!');
+          }
+        );
+      }
+    );
   }
 
   deleteEvent(eventId: string) {
-    if (confirm('¿Estás seguro de que quieres borrar este evento?')) {
-      this.eventsService.deleteEvent(eventId).subscribe(
-        (response) => {
-          console.log('Event deleted successfully', response);
-          this.getAllEventsArchived();
-        },
-        (error) => {
-          console.error('Error deleting event', error);
-        }
-      );
-    }
+    this.notificationService.presentConfirm(
+      'Borrar Evento',
+      '¿Estás seguro de que quieres borrar este evento?',
+      () => {
+        this.eventsService.deleteEvent(eventId).subscribe(
+          (response) => {
+            console.log('Event deleted successfully', response);
+            this.getAllEventsArchived();
+            this.notificationService.presentToast('El evento ha sido borrado exitosamente!');
+          },
+          (error) => {
+            console.error('Error deleting event', error);
+            this.notificationService.presentToastError('Error al borrar el evento, intente nuevamente.');
+          }
+        );
+      }
+    );
   }
 
   dataUrltoImage(dataUrl: string) {

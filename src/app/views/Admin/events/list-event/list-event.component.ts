@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/interfaces/events.interface';
 import { EventsService } from 'src/app/services/events.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-list-event',
@@ -13,6 +14,7 @@ export class ListEventComponent implements OnInit {
 
   constructor(
     private eventsService: EventsService,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit() {
@@ -43,16 +45,21 @@ export class ListEventComponent implements OnInit {
   }
 
   archivatedEvent(eventId: string) {
-    if (confirm('¿Estás seguro de que quieres archivar este evento?')) {
-      this.eventsService.archiveEvent(eventId).subscribe(
-        (response) => {
-          console.log('Event archived successfully', response);
-          this.getAllEvents();
-        },
-        (error) => {
-          console.error('Error archiving event', error);
-        }
-      )
-    }
+    this.notificationService.presentConfirm(
+      'Archivar Evento',
+      '¿Estás seguro de que quieres archivar este evento?',
+      () => {
+        this.eventsService.archiveEvent(eventId).subscribe(
+          (response) => {
+            console.log('Event archived successfully', response);
+            this.getAllEvents();
+            this.notificationService.presentToast('El evento ha sido archivado exitosamente!');
+          },
+          (error) => {
+            console.error('Error archiving event', error);
+          }
+        )
+      }
+    )
   }
 }
