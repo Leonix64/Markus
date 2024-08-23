@@ -23,11 +23,11 @@ export class ListProfileComponent implements OnInit {
   getProfile() {
     this.profileService.getProfile().subscribe(
       response => {
-        console.log('Profile', response);
+        console.log('Profile data:', response);
         this.profile = response;
       },
       err => {
-        console.error('Error fetching profile', err);
+        console.error('Error fetching profile:', err);
       }
     );
   }

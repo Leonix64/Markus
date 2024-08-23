@@ -46,7 +46,7 @@ export class EditProfileComponent implements OnInit {
         this.profileImage = response.profileImage;
       },
       err => {
-        console.error('Error fetching profile', err);
+        console.error('Error fetching profile:', err);
       }
     );
   }
@@ -79,15 +79,15 @@ export class EditProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.profileService.updateProfile(this.profileForm.value).subscribe(
         response => {
-          console.log('Profile updated successfully', response);
-          this.notificationService.presentToast('Profile actualizado exitosamente!');
+          console.log('Profile updated successfully:', response);
+          this.notificationService.presentToast('Perfil actualizado exitosamente!');
           this.roleService.redirectBasedOnRole('list-profile');
         },
         err => {
-          console.error('Error updating profile', err);
-          this.notificationService.presentToastError('Error al actualizar el profile, intente nuevamente.');
+          console.error('Error updating profile:', err);
+          this.notificationService.presentToastError('Error al actualizar el perfil, intente nuevamente.');
         }
-      )
+      );
     }
   }
 }

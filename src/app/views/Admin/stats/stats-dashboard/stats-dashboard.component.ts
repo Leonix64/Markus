@@ -22,10 +22,10 @@ export class StatsDashboardComponent implements OnInit {
     this.statsService.getStatistics().subscribe(
       (response) => {
         this.statsData = response;
-        console.log(this.statsData);
+        console.log('Statistics data loaded:', this.statsData);
       },
       (error) => {
-        console.log(error);
+        console.error('Error retrieving statistics data:', error);
       }
     );
   }

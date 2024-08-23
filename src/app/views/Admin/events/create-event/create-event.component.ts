@@ -38,7 +38,7 @@ export class CreateEventComponent implements OnInit {
 
       this.eventsService.createEvent(eventData).subscribe(
         async (response) => {
-          this.notificationService.presentToast('El evento ha sido creado exitosamente!');
+          this.notificationService.presentToast('¡El evento ha sido creado exitosamente!');
           this.createEventForm.reset();
           this.imagePreview = null;
         },
@@ -46,9 +46,9 @@ export class CreateEventComponent implements OnInit {
           this.notificationService.presentToastError('Error al crear el evento, intente nuevamente.');
           console.error('Error creating event:', err);
         }
-      )
+      );
     } else {
-      this.notificationService.presentToastWarning('Por favor rellene todos los campos necesarios.');
+      this.notificationService.presentToastWarning('Por favor, rellene todos los campos necesarios.');
     }
   }
 
@@ -69,7 +69,7 @@ export class CreateEventComponent implements OnInit {
         resolve(base64String);
       };
       reader.onerror = () => {
-        reject('Error reading file');
+        reject('Error reading file.');
       };
       reader.readAsDataURL(file);
     });

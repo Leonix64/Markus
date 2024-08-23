@@ -38,11 +38,11 @@ export class ListAttendeesComponent implements OnInit {
         const event = response.find(event => event.id === eventId);
         if (event) {
           this.isArchived = event.isArchived;
-          console.log(`Evento ${event.name} (ID ${event.id}) is archived: ${this.isArchived}`);
+          console.log(`Event ${event.name} (ID ${event.id}) is archived: ${this.isArchived}`);
         }
       },
       (error) => {
-        console.error('Error retrieving archived events', error);
+        console.error('Error retrieving archived events:', error);
       }
     );
   }
@@ -52,11 +52,11 @@ export class ListAttendeesComponent implements OnInit {
       (response) => {
         if (response) {
           this.eventName = response.name;
-          this.attendeesData = response.attendees || []; // Assign assistants
+          this.attendeesData = response.attendees || []; // Assign attendees
         }
       },
       (error) => {
-        console.error('Error loading event', error);
+        console.error('Error loading event:', error);
       }
     );
   }
@@ -70,17 +70,17 @@ export class ListAttendeesComponent implements OnInit {
           this.eventsService.unregisterUser(this.eventId!, attendeeId).subscribe(
             () => {
               this.attendeesData = this.attendeesData.filter(attendee => attendee.id !== attendeeId);
-              this.notificationService.presentToast('El participante ha sido eliminado exitosamente!');
+              this.notificationService.presentToast('¡El participante ha sido eliminado exitosamente!');
             },
             (error) => {
-              console.error('Error unregistering attendee', error);
+              console.error('Error unregistering attendee:', error);
               this.notificationService.presentToastError('Error al eliminar el participante, intente nuevamente.');
             }
           );
         }
       );
     } else {
-      console.error('Participant cannot be deleted because eventId is null');
+      console.error('Participant cannot be deleted because eventId is null.');
     }
   }
 }

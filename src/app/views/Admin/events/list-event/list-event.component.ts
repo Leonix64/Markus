@@ -25,15 +25,15 @@ export class ListEventComponent implements OnInit {
     this.eventsService.getNonArchivedEvents().subscribe(
       (data) => {
         this.eventData = data;
-        console.log(data);
+        console.log('Non-archived events data loaded:', data);
       },
       (error) => {
-        console.log(error);
+        console.error('Error retrieving non-archived events:', error);
       }
     );
   }
 
-  dataUrltoImage(dataUrl: string) {
+  dataUrltoImage(dataUrl: string): string {
     if (dataUrl) {
       if (!dataUrl.startsWith('data:image/jpeg;base64,')) {
         return 'data:image/jpeg;base64,' + dataUrl;
@@ -51,15 +51,16 @@ export class ListEventComponent implements OnInit {
       () => {
         this.eventsService.archiveEvent(eventId).subscribe(
           (response) => {
-            console.log('Event archived successfully', response);
+            console.log('Event archived successfully:', response);
             this.getAllEvents();
-            this.notificationService.presentToast('El evento ha sido archivado exitosamente!');
+            this.notificationService.presentToast('¡El evento ha sido archivado exitosamente!');
           },
           (error) => {
-            console.error('Error archiving event', error);
+            console.error('Error archiving event:', error);
+            this.notificationService.presentToastError('Error al archivar el evento, intente nuevamente.');
           }
-        )
+        );
       }
-    )
+    );
   }
 }

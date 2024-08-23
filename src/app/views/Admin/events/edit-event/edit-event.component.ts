@@ -51,10 +51,10 @@ export class EditEventComponent implements OnInit {
           capacity: response.capacity,
           image: imageUrl,
         });
-        console.log(response);
+        console.log('Event data loaded:', response);
       },
       (error) => {
-        console.log(error);
+        console.error('Error loading event data:', error);
       }
     );
   }
@@ -72,19 +72,19 @@ export class EditEventComponent implements OnInit {
           () => {
             this.eventsService.updateEvent(eventId, updatedEvent).subscribe(
               (response) => {
-                console.log('Event updated successfully', response);
-                this.notificationService.presentToast('El evento ha sido actualizado exitosamente!');
+                console.log('Event updated successfully:', response);
+                this.notificationService.presentToast('¡El evento ha sido actualizado exitosamente!');
                 this.router.navigate(['/dashboard/admin/list-event']);
               },
               (error) => {
-                console.error('Error updating event', error);
+                console.error('Error updating event:', error);
                 this.notificationService.presentToastError('Error al actualizar el evento, intente nuevamente.');
               }
             );
           }
         );
       } else {
-        console.error('Event ID is missing');
+        console.error('Event ID is missing.');
         this.router.navigate(['/dashboard/admin/list-event']);
       }
     }
@@ -104,14 +104,14 @@ export class EditEventComponent implements OnInit {
         const base64Data = base64Image.split(',')[1];
         const formattedImage = this.dataUrltoImage(base64Data);
         this.eventForm.patchValue({
-          image: this.dataUrltoImage(base64Data),
+          image: formattedImage,
         });
       };
       reader.readAsDataURL(file);
     }
   }
 
-  dataUrltoImage(dataUrl: string) {
+  dataUrltoImage(dataUrl: string): string {
     if (dataUrl && !dataUrl.startsWith('data:image')) {
       return 'data:image/jpeg;base64,' + dataUrl;
     } else {

@@ -32,20 +32,24 @@ export class SidebarComponent implements OnInit {
     this.tabsService.getTabs().subscribe(
       response => {
         this.tabs = response.tabs;
-        console.log('Tabs', this.tabs);
+        console.log('Tabs loaded:', this.tabs);
       },
       error => {
-        console.error('Error loading tabs', error);
+        console.error('Error loading tabs:', error);
       }
     );
   }
 
   loadUserName() {
-    this.profileService.getProfile().forEach(
+    this.profileService.getProfile().subscribe(
       profile => {
         this.username = profile.username;
+        console.log('User profile loaded:', profile);
+      },
+      error => {
+        console.error('Error loading profile:', error);
       }
-    )
+    );
   }
 
   closeMenu() {

@@ -17,18 +17,18 @@ export class CreateAttendeesComponent implements OnInit {
     private fb: FormBuilder,
     private eventsService: EventsService,
     private notificationService: NotificationService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.createAttendeeForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required]
+      phone: ['', Validators.required],
     });
   }
 
-  ngOnInit() { }
+  ngOnInit(): void { }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.createAttendeeForm.valid) {
       const eventId = this.route.snapshot.paramMap.get('id');
       const attendeeData = this.createAttendeeForm.value;
@@ -36,19 +36,19 @@ export class CreateAttendeesComponent implements OnInit {
       if (eventId) {
         this.eventsService.registerUser(eventId, attendeeData).subscribe(
           (response) => {
-            this.notificationService.presentToast('El participante ha sido registrado exitosamente!');
+            this.notificationService.presentToast('¡El participante ha sido registrado exitosamente!');
             this.createAttendeeForm.reset();
           },
           (error) => {
             console.error('Error registering participant:', error);
-            this.notificationService.presentToastError('Error al registrar el participante o el evento esta lleno, intente nuevamente.');
+            this.notificationService.presentToastError('Error al registrar el participante o el evento está lleno, intente nuevamente.');
           }
         );
       } else {
         this.notificationService.presentToastWarning('ID de evento no encontrado.');
       }
     } else {
-      this.notificationService.presentToastWarning('Por favor rellene todos los campos necesarios.');
+      this.notificationService.presentToastWarning('Por favor, rellene todos los campos necesarios.');
     }
   }
 }

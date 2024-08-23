@@ -25,10 +25,10 @@ export class ListArchivedComponent implements OnInit {
     this.eventsService.getArchivedEvents().subscribe(
       (data) => {
         this.archivedEventData = data;
-        console.log(data);
+        console.log('Archived events data loaded:', data);
       },
       (error) => {
-        console.log(error);
+        console.error('Error retrieving archived events:', error);
       }
     );
   }
@@ -40,9 +40,13 @@ export class ListArchivedComponent implements OnInit {
       () => {
         this.eventsService.unarchiveEvent(eventId).subscribe(
           (response) => {
-            console.log('Event restored successfully', response);
+            console.log('Event restored successfully:', response);
             this.getAllEventsArchived();
-            this.notificationService.presentToast('El evento ha sido restaurado exitosamente!');
+            this.notificationService.presentToast('¡El evento ha sido restaurado exitosamente!');
+          },
+          (error) => {
+            console.error('Error restoring event:', error);
+            this.notificationService.presentToastError('Error al restaurar el evento, intente nuevamente.');
           }
         );
       }
@@ -56,12 +60,12 @@ export class ListArchivedComponent implements OnInit {
       () => {
         this.eventsService.deleteEvent(eventId).subscribe(
           (response) => {
-            console.log('Event deleted successfully', response);
+            console.log('Event deleted successfully:', response);
             this.getAllEventsArchived();
-            this.notificationService.presentToast('El evento ha sido borrado exitosamente!');
+            this.notificationService.presentToast('¡El evento ha sido borrado exitosamente!');
           },
           (error) => {
-            console.error('Error deleting event', error);
+            console.error('Error deleting event:', error);
             this.notificationService.presentToastError('Error al borrar el evento, intente nuevamente.');
           }
         );
@@ -69,7 +73,7 @@ export class ListArchivedComponent implements OnInit {
     );
   }
 
-  dataUrltoImage(dataUrl: string) {
+  dataUrltoImage(dataUrl: string): string {
     if (dataUrl) {
       if (!dataUrl.startsWith('data:image/jpeg;base64,')) {
         return 'data:image/jpeg;base64,' + dataUrl;
