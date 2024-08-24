@@ -12,7 +12,7 @@
     <h1 class="events-title">Upcoming Events</h1>
     <p class="events-subtitle">Check out our upcoming events and join us for an exciting time.</p>
 
-    <ion-grid>
+    <ion-grid *ngIf="eventData && eventData.length > 0; else loading">
       <ion-row>
         <ion-col size="12" size-md="6" size-lg="3" *ngFor="let event of eventData">
           <ion-card class="event-card">
@@ -36,5 +36,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <ng-template #loading>
+      <app-loading-spinner></app-loading-spinner>
+    </ng-template>
   </div>
 </ion-content>

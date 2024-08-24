@@ -16,7 +16,7 @@
       Añadir Participante
     </ion-button>
 
-    <ion-grid class="attendees-grid">
+    <ion-grid *ngIf="attendeesData && attendeesData.length > 0; else loading" class="attendees-grid">
       <ion-row class="header-row">
         <ion-col size="12" size-md="2">Nombre</ion-col>
         <ion-col size="12" size-md="3">Email</ion-col>
@@ -44,5 +44,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <ng-template #loading>
+      <app-loading-spinner></app-loading-spinner>
+    </ng-template>
   </div>
 </ion-content>

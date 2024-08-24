@@ -1,0 +1,31 @@
+<ng-container *ngIf="eventData && eventData.length; else loading">
+  <ion-list>
+    <ion-item *ngFor="let event of eventData">
+      <ion-thumbnail slot="start">
+        <img [src]="event.image || '../../../../../assets/defaultEvent.jpg'" alt="Event Image">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p>
+          <ion-icon name="location-outline"></ion-icon>
+          {{ event.location }}
+        </p>
+        <p>
+          <ion-icon name="calendar-outline"></ion-icon>
+          {{ event.date | date: 'longDate' }} - {{ event.time | date: 'shortTime' }}
+        </p>
+        <p>
+          <ion-icon name="people-outline"></ion-icon>
+          Capacity: {{ event.capacity }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ng-container>
+
+<ng-template #loading>
+  <div *ngIf="!eventData || !eventData.length">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-template>

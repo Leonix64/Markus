@@ -1,4 +1,4 @@
-<div class="quick-stats">
+<div *ngIf="statsData; else loading" class="quick-stats">
   <div class="stat-card">
     <ion-icon name="people-outline"></ion-icon>
     <span class="stat-value">{{ statsData?.totalAttendees || 0 }}</span>
@@ -20,3 +20,7 @@
     <span class="stat-label">Eventos Archivados</span>
   </div>
 </div>
+
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

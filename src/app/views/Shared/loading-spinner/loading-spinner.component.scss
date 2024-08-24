@@ -1,0 +1,51 @@
+.cosmic-vortex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+.cosmic-vortex {
+  width: 100px;
+  height: 100px;
+  position: relative;
+
+  .star {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #2d2d2d, 0 0 20px #2d2d2d, 0 0 30px #2d2d2d,
+      0 0 40px #5f91ff, 0 0 70px #5f91ff, 0 0 80px #5f91ff, 0 0 100px #5f91ff,
+      0 0 150px #5f91ff;
+    animation: cosmic-spin 4s infinite linear;
+
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        $angle: $i * 45deg;
+        transform: rotate($angle) translateX(40px);
+        animation-delay: -($i * 0.2s);
+      }
+    }
+  }
+}
+
+.loading-text {
+  margin-top: 20px;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0 0 10px #2d2d2d, 0 0 20px #2d2d2d, 0 0 30px #2d2d2d;
+}
+
+@keyframes cosmic-spin {
+  0% {
+    transform: rotate(0deg) translateX(40px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(40px) rotate(-360deg);
+  }
+}

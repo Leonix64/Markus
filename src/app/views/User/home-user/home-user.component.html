@@ -13,49 +13,5 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="user-dashboard">
-    <div class="welcome-card">
-      <h2 class="welcome-message">Welcome back, User!</h2>
-      <p class="last-login">Last login: Today at 09:45 AM</p>
-    </div>
-    
-    <div class="quick-stats">
-      <div class="stat-card">
-        <ion-icon name="trophy"></ion-icon>
-        <span class="stat-value">1,234</span>
-        <span class="stat-label">Points</span>
-      </div>
-      <div class="stat-card">
-        <ion-icon name="bar-chart"></ion-icon>
-        <span class="stat-value">78%</span>
-        <span class="stat-label">Progress</span>
-      </div>
-      <div class="stat-card">
-        <ion-icon name="ribbon"></ion-icon>
-        <span class="stat-value">15</span>
-        <span class="stat-label">Achievements</span>
-      </div>
-    </div>
-
-    <div class="action-cards">
-      <div class="action-card">
-        <ion-icon name="person"></ion-icon>
-        <h3>Profile</h3>
-        <p>Update your personal information</p>
-        <ion-button fill="clear">Edit Profile</ion-button>
-      </div>
-      <div class="action-card">
-        <ion-icon name="list"></ion-icon>
-        <h3>Activities</h3>
-        <p>View your recent activities</p>
-        <ion-button fill="clear">See All</ion-button>
-      </div>
-      <div class="action-card">
-        <ion-icon name="settings"></ion-icon>
-        <h3>Settings</h3>
-        <p>Customize your app preferences</p>
-        <ion-button fill="clear">Adjust</ion-button>
-      </div>
-    </div>
-  </div>
+  <app-list-events></app-list-events>
 </ion-content>

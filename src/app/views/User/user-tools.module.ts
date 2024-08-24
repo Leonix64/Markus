@@ -7,10 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedToolsModule } from '../Shared/shared-tools.module';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { AdminToolsModule } from '../Admin/admin-tools.module';
+import { ListEventsComponent } from './events/list-events/list-events.component';
 
 @NgModule({
   declarations: [
-    HomeUserComponent
+    HomeUserComponent,
+    ListEventsComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,7 @@ import { AdminToolsModule } from '../Admin/admin-tools.module';
     SharedToolsModule,
     RouterLink,
     ReactiveFormsModule,
-    AdminToolsModule
+    //AdminToolsModule
   ],
   exports: [HomeUserComponent]
 })
